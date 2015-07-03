@@ -1,0 +1,38 @@
+---
+- hosts: govhack2015
+  sudo: true
+  vars:
+    hostname: "govhack2015.codium.com.au"
+    dbuser: "govhack2015"
+    dbpasswd: "password"
+    database: "govhack2015"
+    slanger_secret: "secret"
+    slanger_key: "key"
+    sites: [
+      {
+        hostname: "jobsoutsource.com.au",
+        filesystem_root: "/var/www/govhack2015/public_html",
+        document_root: "/var/www/govhack2015/public_html/public",
+        queue: "yes",
+        git_deploy: "yes"
+      },
+    ]
+    install_db: "yes"
+    install_web: "yes"
+    install_hhvm: "no"
+    install_mailcatcher: "no"
+    install_beanstalkd: "yes"
+    install_redis: "yes"
+    install_javascript_build_system: "no"
+    install_phpmyadmin: "yes"
+    install_php_mssql: "no"
+    install_gems: ["bundler", "slanger"]
+    install_supervisor: "yes"
+    php_configs: [
+      { option: "upload_max_filesize", value: "100M" },
+      { option: "post_max_size", value: "100M" }
+    ]
+  tasks:
+    - include: ansible/tasks/tasks.yml
+  handlers:
+    - include: ansible/handlers/handlers.yml
