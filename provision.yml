@@ -1,18 +1,18 @@
 ---
-- hosts: govhack2015
+- hosts: localpromoter
   sudo: true
   vars:
-    hostname: "govhack2015.codium.com.au"
-    dbuser: "govhack2015"
+    hostname: "localpromoter.codium.com.au"
+    dbuser: "locolpromoter"
     dbpasswd: "password"
-    database: "govhack2015"
+    database: "localpromoter"
     slanger_secret: "secret"
     slanger_key: "key"
     sites: [
       {
-        hostname: "jobsoutsource.com.au",
-        filesystem_root: "/var/www/govhack2015/public_html",
-        document_root: "/var/www/govhack2015/public_html/public",
+        hostname: "localpromoter.com.au",
+        filesystem_root: "/var/www/localpromoter/public_html",
+        document_root: "/var/www/localpromoter/public_html/public",
         queue: "yes",
         git_deploy: "yes"
       },
