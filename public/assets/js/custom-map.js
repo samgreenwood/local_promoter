@@ -11,7 +11,7 @@ $.ajaxSetup({
 function createHomepageGoogleMap(_latitude,_longitude){
     setMapHeight();
     if( document.getElementById('map') != null ){
-        $.get("/api/companies", function(locations){
+        $.get("/api/companies?lat="+_latitude+"&lng="+_longitude , function(locations){
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
                 scrollwheel: false,
@@ -37,9 +37,10 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     closeBoxURL: "assets/img/close-btn.png",
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
+                console.log(locations[i])
                 var marker = new MarkerWithLabel({
                     title: locations[i]['name'],
-                    position: new google.maps.LatLng(locations[i]['lat'], locations[i]['lng']),
+                    position: new google.maps.LatLng(locations[i]['lat'], locations[i]['longitude']),
                     map: map,
                     icon: 'assets/img/marker.png',
                     labelContent: "",
@@ -55,8 +56,8 @@ function createHomepageGoogleMap(_latitude,_longitude){
                         '</div>' +
                         '</a>' +
                         '<div class="infobox-description">' +
-                        '<div class="infobox-title">'+locations.name+'</div>' +
-                        '<div class="infobox-location">' + locations.address1 + '</div>' +
+                        '<div class="infobox-title">'+locations[i].name+'</div>' +
+                        '<div class="infobox-location">' + locations[i].address1 + '</div>' +
                         '</div>' +
                         '</div>';
                 //Define the infobox

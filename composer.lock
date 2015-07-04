@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a24f1e25377e39a13bc128edc5c8d7ef",
+    "hash": "2f3e289e1493bc3c59f5c227dbaad623",
     "packages": [
         {
             "name": "alexpechkarev/google-geocoder",
@@ -778,6 +778,52 @@
                 "tokenizer"
             ],
             "time": "2015-03-11 20:06:43"
+        },
+        {
+            "name": "joshtronic/php-googleplaces",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joshtronic/php-googleplaces.git",
+                "reference": "4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joshtronic/php-googleplaces/zipball/4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b",
+                "reference": "4497b6c0b6c8e0670216a1ae84c5de2c4edfcd3b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "joshtronic\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Sherman",
+                    "email": "josh@gravityblvd.com",
+                    "homepage": "https://github.com/joshtronic/php-googleplaces"
+                }
+            ],
+            "description": "PHP Wrapper for the Google Places API",
+            "homepage": "https://github.com/joshtronic/php-googleplaces",
+            "keywords": [
+                "api",
+                "google",
+                "places"
+            ],
+            "time": "2014-09-20 05:57:08"
         },
         {
             "name": "laravel/framework",
