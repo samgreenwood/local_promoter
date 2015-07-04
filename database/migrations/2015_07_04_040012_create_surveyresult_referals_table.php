@@ -12,7 +12,7 @@ class CreateSurveyresultReferalsTable extends Migration
      */
     public function up()
     {
-        Schema::table('surveyresult_referals', function(Blueprint $table)
+        Schema::create('surveyresult_referals', function(Blueprint $table)
         {
             $table->increments('id');
             $table->integer('surveyresult_id')->unsigned();

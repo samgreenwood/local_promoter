@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Referrals extends Migration
+class CreateReferrals extends Migration
 {
     /**
      * Run the migrations.
