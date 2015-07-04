@@ -2,8 +2,10 @@
 
 namespace LocalPromoter\Http\Controllers;
 
+use LocalPromoter\Company;
 use Illuminate\Http\Request;
 
+use LocalPromoter\HiddenCompany;
 use LocalPromoter\Http\Requests;
 use LocalPromoter\Http\Controllers\Controller;
 
@@ -16,7 +18,13 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $user = \Auth::user();
+
+        $hidden = $user->hiddenCompanies()->where('created_at', '>', \Carbon\Carbon::now()->subHours(24));
+
+        $companies = Company::whereNotIn('id', $hidden->lists('id'))->paginate(15);
+
+        return view('company.index', compact('companies'));
     }
 
     /**
@@ -81,5 +89,10 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function hideForUser($userId)
+    {
+        HiddenCompany::create(['user_id' => \Auth::user()->id, 'company_id' => \Input::get('company')]);
     }
 }

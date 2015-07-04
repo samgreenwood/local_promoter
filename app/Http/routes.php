@@ -27,7 +27,11 @@ Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthCont
 
 Route::get('/api/companies', ['as' => 'api.companies.index', 'uses' => 'API\CompanyController@index']);
 
-Route::resource('company','CompanyController');
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('company', 'CompanyController');
+
+    Route::post('/users/{userId}/hide', 'CompanyController@hideForUser');
+});
 
 Route::get('/sms-test', function()
 {

@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
                         <div class="search-box map">
-                            <form role="form" id="form-map" class="form-map form-search">
+                            <form role="form" id="form-map" class="form-map form-search" action="{{URL::route('company.index')}}">
                                 <h2>Promote Local Business</h2>
                                 <div class="form-group">
                                     <input type="text" name="postcode" placeholder="Postcode"/>
