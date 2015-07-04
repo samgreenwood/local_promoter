@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \LocalPromoter\Console\Commands\Inspire::class,
+        \LocalPromoter\Console\Commands\Import::class,
+        \LocalPromoter\Console\Commands\Geocode::class
     ];
 
     /**
