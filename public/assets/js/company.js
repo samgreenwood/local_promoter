@@ -52,12 +52,24 @@ $(document).ready(function($) {
 
         $.post( "/users/"+window.userId+"/survey/complete", {company:companyId, 'rating_id':ratingId, 'note' : note, '_token': window.token}, function( data ) {
             var actions = $(company).find('.actions-holder');
-            actions.html('');
-            console.log('sdf');
+            actions.html($('#survey-step-3').html());
+            actions.find('.js-facebook-share').attr('data-facebook', data.facebook);
+
+            console.log($('#survey-step-3').html());
         });
 
 
-        console.log(ratingId);
+
+    });
+
+    $(document).on('click', '.js-facebook-share', function() {
+
+        var facebook = $(this).attr('data-facebook');
+
+        FB.ui({
+            method: 'send',
+            link: facebook
+        });
     });
 
 });

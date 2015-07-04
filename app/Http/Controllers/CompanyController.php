@@ -138,6 +138,9 @@ class CompanyController extends Controller
 
         $surveyResult = SurveyResult::find($rating)->update(['note' => $note]);
 
+        //Generate facebook share link
+
+
 
     }
 }

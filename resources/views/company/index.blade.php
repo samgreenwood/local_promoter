@@ -74,60 +74,36 @@
                                     <!--<div class="tag price">$ 38,000</div>-->
                                     <aside class="actions-holder">
 
-                                   <div class="row">
-                                           <div class="col-md-12">
-                                               You've indicated that you're highly likely to recommend these businesses to a friend or colleague. Who would you recommend for each of these services?
-                                           </div>
-                                       </div>
-                                       <div class="row">
-                                           <div class="col-md-4">
-                                               <div class="form-group">
-                                                    <input class="form-control" id="form-contact-agent-message" rows="5" name="notes"/>
-                                               </div>
-
-                                           </div>
-                                            <div class="col-md-4">
-                                               <div class="form-group">
-                                                     <input class="form-control" id="form-contact-agent-message" rows="5" name="notes"/>
-                                               </div>
-
-                                           </div>
-                                           <div class="col-md-4">
-                                               <div class="form-group">
-                                                     <input class="form-control" id="form-contact-agent-message" rows="5" name="notes"/>
-                                               </div>
-
-                                           </div>
-                                       </div>
 
 
-                                    <div style="display:none;">
+
+
                                     <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                How likely are you to recommend {{$company}} to a friend or colleague?
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <br/>
-                                                                            <div class="rating-holder">
-                                                                                <div class="rating">0</div>
-                                                                                <div class="rating">1</div>
-                                                                                <div class="rating">2</div>
-                                                                                <div class="rating">3</div>
-                                                                                <div class="rating">4</div>
-                                                                                <div class="rating">5</div>
-                                                                                <div class="rating">6</div>
-                                                                                <div class="rating">7</div>
-                                                                                <div class="rating">8</div>
-                                                                                <div class="rating">9</div>
-                                                                                <div class="rating">10</div>
-                                                                            </div>
-                                                                            <div class="clearfix"></div>
-                                                                            <div class="row">
-                                                                                <div class="col-xs-6 text-left">0 - Not likely</div>
-                                                                                <div class="col-xs-6 text-right">10 - Very likely</div>
-                                                                            </div>
+                                        <div class="col-md-12">
+                                        How likely are you to recommend {{$company}} to a friend or colleague?
+                                        </div>
                                     </div>
+
+                                    <br/>
+                                    <div class="rating-holder">
+                                        <div class="rating">0</div>
+                                        <div class="rating">1</div>
+                                        <div class="rating">2</div>
+                                        <div class="rating">3</div>
+                                        <div class="rating">4</div>
+                                        <div class="rating">5</div>
+                                        <div class="rating">6</div>
+                                        <div class="rating">7</div>
+                                        <div class="rating">8</div>
+                                        <div class="rating">9</div>
+                                        <div class="rating">10</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="row">
+                                        <div class="col-xs-6 text-left">0 - Not likely</div>
+                                        <div class="col-xs-6 text-right">10 - Very likely</div>
+                                    </div>
+
 
                                     </aside>
                                     <!--<a href="property-detail.html" class="link-arrow">Read More</a>-->
@@ -229,25 +205,21 @@
     </div>
 </script>
 
-<script type="template" id="survery-step-3">
+<script type="template" id="survey-step-3">
      <div class="row">
-        <div class="col-md-12">
-            You've indicated that you're highly likely to recommend these businesses to a friend or colleague. Who would you recommend for each of these services?
+            <div class="col-md-12">
+                You've indicated that you're highly likely to recommend these businesses to a friend or colleague. Who would you recommend?
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="form-group">
-                 <textarea class="form-control" id="form-contact-agent-message" rows="5" name="notes"></textarea>
+        <div class="row">
+            <div class="col-md-4">
+
+                 <span class="js-facebook-share">Share with facebook</span>
+
+                </div>
+
             </div>
 
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <input type="hidden" name="rating_id"/>
-            <input type="submit" class="btn btn-default js-submit" value="Submit"/>
-        </div>
-    </div>
 </script>
 @stop
