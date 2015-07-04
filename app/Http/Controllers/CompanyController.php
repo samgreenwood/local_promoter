@@ -45,6 +45,7 @@ class CompanyController extends Controller
         if(auth()->user()->company_id) return redirect()->route('companies.edit');
 
         $company = new Company();
+
         return view('company.create', compact('company'));
     }
 

@@ -53,7 +53,7 @@
                         </div><!-- /.col-sm-3 -->
                         <div class="col-md-3 col-sm-3">
                             <article>
-                                <h3>Recent Properties</h3>
+                                <h3>Featured Businesses</h3>
                                 <div class="property small">
                                     <a href="property-detail.html">
                                         <div class="property-image">
@@ -84,23 +84,23 @@
                             <article>
                                 <h3>Contact</h3>
                                 <address>
-                                    <strong>Your Company</strong><br>
-                                    4877 Spruce Drive<br>
-                                    West Newton, PA 15089
+                                    <strong>Local Promoter</strong><br>
+                                    Level 1, 147 Pirie St<br>
+                                    Adelaide, SA 5000
                                 </address>
-                                +1 (734) 123-4567<br>
-                                <a href="#">hello@example.com</a>
+                                +61 (08) 7444 4899<br>
+                                <a href="mailto:hello@localpromoter.com.au">hello@localpromoter.com</a>
                             </article>
                         </div><!-- /.col-sm-3 -->
                         <div class="col-md-3 col-sm-3">
                             <article>
                                 <h3>Useful Links</h3>
                                 <ul class="list-unstyled list-links">
-                                    <li><a href="#">All Properties</a></li>
+                                    <li><a href="#">All Businesses</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Login and Register Account</a></li>
+                                    <li><a href="{{route('login')}}">Login and Register Account</a></li>
                                     <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Terms and Conditions</a></li>
+                                    <li><a href="{{route('terms')}}">Terms and Conditions</a></li>
                                 </ul>
                             </article>
                         </div><!-- /.col-sm-3 -->
@@ -110,7 +110,7 @@
             <aside id="footer-thumbnails" class="footer-thumbnails"></aside><!-- /#footer-thumbnails -->
             <aside id="footer-copyright">
                 <div class="container">
-                    <span>Copyright © 2013. All Rights Reserved.</span>
+                    <span>Copyright © {{date('Y')}} Local Promoter</span>
                     <span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
                 </div>
             </aside>
