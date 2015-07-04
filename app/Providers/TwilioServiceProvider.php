@@ -3,6 +3,7 @@
 namespace LocalPromoter\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Services_Twilio;
 
 class TwilioServiceProvider extends ServiceProvider
 {

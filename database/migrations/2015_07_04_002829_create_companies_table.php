@@ -14,7 +14,7 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function(Blueprint $table) {
             $table->engine="InnoDB";
-            $table->integer('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
@@ -22,6 +22,8 @@ class CreateCompaniesTable extends Migration
             $table->string('state')->nullable();
             $table->integer('postcode')->nullable();
             $table->string('phone')->nullable();
+            $table->string('verification_code')->nullable();
+            $table->boolean('verified')->default(false);
             $table->timestamps();
         });
     }

@@ -12,6 +12,8 @@
 */
 
 
+use LocalPromoter\Company;
+
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/home', ['as' => 'home_path', 'uses' => 'HomeController@index']);
 
@@ -23,4 +25,3 @@ Route::post('/register', ['as' => 'login', 'uses' => 'Auth\AuthController@postRe
 
 Route::get('/auth/{provider}/redirect', ['as' => 'oauth.redirect', 'uses' => 'Auth\AuthController@redirect']);
 Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthController@handle']);
-

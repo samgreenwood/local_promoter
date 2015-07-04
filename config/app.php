@@ -144,6 +144,7 @@ return [
         LocalPromoter\Providers\AppServiceProvider::class,
         LocalPromoter\Providers\EventServiceProvider::class,
         LocalPromoter\Providers\RouteServiceProvider::class,
+        LocalPromoter\Providers\TwilioServiceProvider::class,
 
 
     ],
