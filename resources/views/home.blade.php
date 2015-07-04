@@ -22,14 +22,10 @@
                             <form role="form" id="form-map" class="form-map form-search">
                                 <h2>Promote Local Business</h2>
                                 <div class="form-group">
-                                    <input type="text" name="postcode"></input>
+                                    <input type="text" name="postcode" placeholder="Postcode"/>
                                 </div><!-- /.form-group -->
 
-                                <div class="form-group">
-                                    <div class="price-range">
-                                        <input id="price-input" type="text" name="price" value="1000;299000">
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-default">Search Now</button>
                                 </div><!-- /.form-group -->
@@ -47,19 +43,19 @@
         <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
-                    <h1 class="no-bottom-margin no-border">Zoner Is Fully Loaded Real Estate Template with <a href="#" class="text-underline">Tons of Features</a>!</h1>
+                    <h1 class="no-bottom-margin no-border">Local Promoter - Boosting South Australian Businesses</a>!</h1>
                 </div>
             </div>
         </section><!-- /#banner -->
         <section id="our-services" class="block">
             <div class="container">
-                <header class="section-title"><h2>Our Services</h2></header>
+                <header class="section-title"><h2>Recient Rewards</h2></header>
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
                         <div class="feature-box equal-height">
                             <figure class="icon"><i class="fa fa-folder"></i></figure>
                             <aside class="description">
-                                <header><h3>Wide Range of Properties</h3></header>
+                                <header><h3></h3></header>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                 <a href="properties-listing.html" class="link-arrow">Read More</a>
                             </aside>

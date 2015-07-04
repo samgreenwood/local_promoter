@@ -16,6 +16,17 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserTableSeeder::class);
 
+        
+
+        \DB::table('rewards')->insert([
+            ['name' => '$10 Amazon Gift Voucher'],
+            ['name' => '$20 Amazon Gift Voucher'],
+            ['name' => '$50 Amazon Gift Voucher'],
+            ['name' => '$100 Amazon Gift Voucher'],
+            ['name' => '$200 Amazon Gift Voucher']
+
+        ]);
+
         Model::reguard();
     }
 }
