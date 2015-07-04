@@ -9,11 +9,22 @@ class Company extends Model
      */
     protected $table = "companies";
 
+    /**
+     * @var string
+     */
+    protected $fillable = ['name', 'address1', 'address2', 'description', 'email', 'phone', 'website', 'suburb', 'state', 'postcode', 'town', 'type'];
+
+    /**
+     * @return mixed
+     */
     public function __toString()
     {
         return $this->name;
     }
 
+    /**
+     * @return string
+     */
     public function getAddress()
     {
         return $this->address2.' '.$this->town.' '.$this->state.', '.$this->postcode;
