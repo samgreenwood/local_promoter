@@ -43,6 +43,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->name;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function hiddenCompanies()
     {
         return $this->hasMany(HiddenCompany::class);

@@ -25,6 +25,8 @@ Route::post('/register', ['as' => 'login', 'uses' => 'Auth\AuthController@postRe
 Route::get('/auth/{provider}/redirect', ['as' => 'oauth.redirect', 'uses' => 'Auth\AuthController@redirect']);
 Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthController@handle']);
 
+Route::get('/terms', ['as' => 'terms', 'uses' => 'PagesController@terms']);
+
 Route::get('/api/companies', ['as' => 'api.companies.index', 'uses' => 'API\CompanyController@index']);
 
 Route::group(['middleware' => 'auth'], function() {
@@ -33,6 +35,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/users/{userId}/hide', 'CompanyController@hideForUser');
     Route::post('/users/{userId}/survey', 'CompanyController@storeSurvey');
     Route::post('/users/{userId}/survey/complete', 'CompanyController@storeSurveyComplete');
+
+    Route::get('/create-company', ['as' => 'companies.create', 'uses' => 'CompanyController@create']);
+    Route::post('/create-company', ['as' => 'companies.store', 'uses' => 'CompanyController@store']);
+    Route::get('/edit-company', ['as' => 'companies.edit', 'uses' => 'CompanyController@edit']);
+    Route::put('/edit-company', ['as' => 'companies.update', 'uses' => 'CompanyController@update']);
 });
 
 Route::get('/sms-test', function()
