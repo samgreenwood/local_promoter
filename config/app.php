@@ -147,6 +147,9 @@ return [
         LocalPromoter\Providers\TwilioServiceProvider::class,
 
 
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Alexpechkarev\GoogleGeocoder\GoogleGeocoderServiceProvider::class
+
     ],
 
     /*
@@ -195,6 +198,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
