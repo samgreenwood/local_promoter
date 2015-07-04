@@ -129,7 +129,6 @@
 <script type="text/javascript" src="assets/js/jquery.placeholder.js"></script>
 <script type="text/javascript" src="assets/js/icheck.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery.vanillabox-0.1.5.min.js"></script>
-<script type="text/javascript" src="assets/js/retina-1.1.0.min.js"></script>
 <script type="text/javascript" src="assets/js/jshashtable-2.1_src.js"></script>
 <script type="text/javascript" src="assets/js/jquery.numberformatter-1.2.3.js"></script>
 <script type="text/javascript" src="assets/js/tmpl.js"></script>
@@ -143,8 +142,8 @@
 <script type="text/javascript" src="assets/js/ie.js"></script>
 <![endif]-->
 <script>
-    _latitude = 48.87;
-    _longitude = 2.29;
+    _latitude = -34.9290;
+    _longitude = 138.6010;
     createHomepageGoogleMap(_latitude,_longitude);
     $(window).load(function(){
         initializeOwl(false);

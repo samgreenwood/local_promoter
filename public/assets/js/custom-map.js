@@ -11,9 +11,9 @@ $.ajaxSetup({
 function createHomepageGoogleMap(_latitude,_longitude){
     setMapHeight();
     if( document.getElementById('map') != null ){
-        $.getScript("assets/js/locations.js", function(){
+        $.get("/api/companies", function(locations){
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 14,
+                zoom: 13,
                 scrollwheel: false,
                 center: new google.maps.LatLng(_latitude, _longitude),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -23,7 +23,6 @@ function createHomepageGoogleMap(_latitude,_longitude){
             var newMarkers = [];
             for (i = 0; i < locations.length; i++) {
                 var pictureLabel = document.createElement("img");
-                pictureLabel.src = locations[i][7];
                 var boxText = document.createElement("div");
                 infoboxOptions = {
                     content: boxText,
@@ -39,25 +38,25 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
                 var marker = new MarkerWithLabel({
-                    title: locations[i][0],
-                    position: new google.maps.LatLng(locations[i][3], locations[i][4]),
+                    title: locations[i]['name'],
+                    position: new google.maps.LatLng(locations[i]['lat'], locations[i]['lng']),
                     map: map,
                     icon: 'assets/img/marker.png',
-                    labelContent: pictureLabel,
+                    labelContent: "",
                     labelAnchor: new google.maps.Point(50, 0),
                     labelClass: "marker-style"
                 });
                 newMarkers.push(marker);
                 boxText.innerHTML =
                     '<div class="infobox-inner">' +
-                        '<a href="' + locations[i][5] + '">' +
+                        '<a href="' + locations[i]['name'] + '">' +
                         '<div class="infobox-image" style="position: relative">' +
                         '<img src="' + locations[i][6] + '">' + '<div><span class="infobox-price">' + locations[i][2] + '</span></div>' +
                         '</div>' +
                         '</a>' +
                         '<div class="infobox-description">' +
-                        '<div class="infobox-title"><a href="'+ locations[i][5] +'">' + locations[i][0] + '</a></div>' +
-                        '<div class="infobox-location">' + locations[i][1] + '</div>' +
+                        '<div class="infobox-title">'+locations.name+'</div>' +
+                        '<div class="infobox-location">' + locations.address1 + '</div>' +
                         '</div>' +
                         '</div>';
                 //Define the infobox
@@ -128,59 +127,6 @@ function createHomepageGoogleMap(_latitude,_longitude){
 // Function which set marker to the user position
 function success(position) {
     createHomepageGoogleMap(position.coords.latitude, position.coords.longitude);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Google Map - Property Detail
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function initMap(propertyId) {
-    $.getScript("assets/js/locations.js", function(){
-        var subtractPosition = 0;
-        var mapWrapper = $('#property-detail-map.float');
-
-        if (document.documentElement.clientWidth > 1200) {
-            subtractPosition = 0.013;
-        }
-        if (document.documentElement.clientWidth < 1199) {
-            subtractPosition = 0.006;
-        }
-        if (document.documentElement.clientWidth < 979) {
-            subtractPosition = 0.001;
-        }
-        if (document.documentElement.clientWidth < 767) {
-            subtractPosition = 0;
-        }
-
-        var mapCenter = new google.maps.LatLng(locations[propertyId][3],locations[propertyId][4]);
-
-        if ( $("#property-detail-map").hasClass("float") ) {
-            mapCenter = new google.maps.LatLng(locations[propertyId][3],locations[propertyId][4] - subtractPosition);
-            mapWrapper.css('width', mapWrapper.width() + mapWrapper.offset().left )
-        }
-
-        var mapOptions = {
-            zoom: 15,
-            center: mapCenter,
-            disableDefaultUI: false,
-            scrollwheel: false,
-            styles: mapStyles
-        };
-        var mapElement = document.getElementById('property-detail-map');
-        var map = new google.maps.Map(mapElement, mapOptions);
-
-        var pictureLabel = document.createElement("img");
-        pictureLabel.src = locations[propertyId][7];
-        var markerPosition = new google.maps.LatLng(locations[propertyId][3],locations[propertyId][4]);
-        var marker = new MarkerWithLabel({
-            position: markerPosition,
-            map: map,
-            icon: 'assets/img/marker.png',
-            labelContent: pictureLabel,
-            labelAnchor: new google.maps.Point(50, 0),
-            labelClass: "marker-style"
-        });
-    });
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

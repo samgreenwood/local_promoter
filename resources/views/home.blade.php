@@ -20,15 +20,12 @@
                     <div class="col-md-3 col-sm-4">
                         <div class="search-box map">
                             <form role="form" id="form-map" class="form-map form-search">
-                                <h2>Search Your Property</h2>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="search-box-property-id" placeholder="Property ID">
-                                </div>
+                                <h2>Search Your Business</h2>
                                 <div class="form-group">
                                     <select name="type">
-                                        <option value="">Status</option>
-                                        <option value="1">Rent</option>
-                                        <option value="2">Sale</option>
+                                        <option value="1">Bar</option>
+                                        <option value="2">Restaurant</option>
+                                        <option value="3">Retailer</option>
                                     </select>
                                 </div><!-- /.form-group -->
                                 <div class="form-group">

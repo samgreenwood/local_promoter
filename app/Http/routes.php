@@ -24,3 +24,16 @@ Route::post('/register', ['as' => 'login', 'uses' => 'Auth\AuthController@postRe
 
 Route::get('/auth/{provider}/redirect', ['as' => 'oauth.redirect', 'uses' => 'Auth\AuthController@redirect']);
 Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthController@handle']);
+
+Route::get('/api/companies', ['as' => 'api.companies.index', 'uses' => 'API\CompanyController@index']);
+
+Route::get('/sms-test', function()
+{
+    $client = app(Services_Twilio::class);
+
+    $client->account->messages->sendMessage(
+        "LocalPromo",
+        "+610423350768",
+        "Testing twilio!"
+    );
+});
