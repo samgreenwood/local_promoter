@@ -14,6 +14,11 @@ class Company extends Model
         return $this->name;
     }
 
+    public function getAddress()
+    {
+        return $this->address2.' '.$this->town.' '.$this->state.', '.$this->postcode;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
