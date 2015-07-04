@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserTableSeeder::class);
 
-        
+        //Import the companies
+        \DB::unprepared(file_get_contents("companies.sql"));
+
 
         \DB::table('rewards')->insert([
             ['name' => '$10 Amazon Gift Voucher'],
