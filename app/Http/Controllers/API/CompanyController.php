@@ -23,7 +23,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return $this->company->all();
+        return $this->company->limit(500)->get();
     }
 
 }
