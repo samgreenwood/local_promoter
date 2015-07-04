@@ -29,6 +29,12 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        \DB::table('user_rewards')->insert([
+            ['user_id' => 1, 'company_id' => 1, 'reward_id' => 1, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['user_id' => 1, 'company_id' => 2, 'reward_id' => 3, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+            ['user_id' => 1, 'company_id' => 3, 'reward_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
+        ]);
+
         Model::reguard();
     }
 }

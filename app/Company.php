@@ -9,6 +9,11 @@ class Company extends Model
      */
     protected $table = "companies";
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
