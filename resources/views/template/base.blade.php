@@ -54,6 +54,7 @@
                         <div class="col-md-3 col-sm-3">
                             <article>
                                 <h3>Featured Businesses</h3>
+                                @foreach ($featured as $company)
                                 <div class="property small">
                                     <a href="property-detail.html">
                                         <div class="property-image">
@@ -61,23 +62,12 @@
                                         </div>
                                     </a>
                                     <div class="info">
-                                        <a href="property-detail.html"><h4>2186 Rinehart Road</h4></a>
-                                        <figure>Doral, FL 33178 </figure>
-                                        <div class="tag price">$ 72,000</div>
+                                        <a href="property-detail.html"><h4>{{$company}}</h4></a>
+                                        <figure>{{$company->getAddress()}}</figure>
+                                        <div class="tag price">9</div>
                                     </div>
                                 </div><!-- /.property -->
-                                <div class="property small">
-                                    <a href="property-detail.html">
-                                        <div class="property-image">
-                                            <img alt="" src="assets/img/properties/property-09.jpg">
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <a href="property-detail.html"><h4>2479 Murphy Court</h4></a>
-                                        <figure>Minneapolis, MN 55402</figure>
-                                        <div class="tag price">$ 36,000</div>
-                                    </div>
-                                </div><!-- /.property -->
+                               @endforeach
                             </article>
                         </div><!-- /.col-sm-3 -->
                         <div class="col-md-3 col-sm-3">

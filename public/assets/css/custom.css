@@ -18,7 +18,8 @@
 }
 
 .rating-holder {
-
+    padding-left:62px;
+    padding-top:5px;
 }
 
 .rating {
@@ -51,4 +52,8 @@
 
 .property {
     margin-top:26px;
+}
+
+.actions-holder .question {
+    color: #073855;
 }

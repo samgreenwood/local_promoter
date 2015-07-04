@@ -146,6 +146,7 @@ return [
         LocalPromoter\Providers\RouteServiceProvider::class,
         LocalPromoter\Providers\TwilioServiceProvider::class,
         LocalPromoter\Providers\GooglePlacesServiceProvider::class,
+        LocalPromoter\Providers\ComposerServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Alexpechkarev\GoogleGeocoder\GoogleGeocoderServiceProvider::class,

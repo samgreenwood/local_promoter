@@ -74,17 +74,13 @@
                                     <!--<div class="tag price">$ 38,000</div>-->
                                     <aside class="actions-holder">
 
-
-
-
-
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 question">
                                         How likely are you to recommend {{$company}} to a friend or colleague?
                                         </div>
                                     </div>
 
-                                    <br/>
+
                                     <div class="rating-holder">
                                         <div class="rating">0</div>
                                         <div class="rating">1</div>

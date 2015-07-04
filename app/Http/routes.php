@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     });
 
+    Route::get('/search', 'CompanyController@index');
+
     Route::resource('company', 'CompanyController');
 
     Route::post('/users/{userId}/hide', 'CompanyController@hideForUser');
