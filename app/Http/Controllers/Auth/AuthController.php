@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace LocalPromoter\Http\Controllers\Auth;
 
-use App\User;
+use Laravel\Socialite\Facades\Socialite;
+use LocalPromoter\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use LocalPromoter\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -62,4 +63,55 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * @return mixed
+     */
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function facebookRedirect()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function googleHandle()
+    {
+        $user = Socialite::driver('google')->user();
+
+        $user = User::firstOrNew(['email' => $user->getEmail()]);
+        $user->name = $user->getName();
+        $user->save();
+
+        \Auth::login($user);
+
+        return redirect('home');
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function facebookHandle()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        $user = User::firstOrNew(['email' => $user->getEmail()]);
+        $user->name = $user->getName();
+        $user->save();
+
+        \Auth::login($user);
+
+        return redirect('home');
+
+    }
+
+
 }
