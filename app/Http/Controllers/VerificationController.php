@@ -61,7 +61,7 @@ class VerificationController extends Controller
                     $company->verified = true;
                     $company->save();
 
-                    $response->say('Thankyou, your account has been verified');
+                    $response->say('Thank you, your account has been verified');
 
                 } else {
                     $gather = $response->gather(array('numDigits' => 6));

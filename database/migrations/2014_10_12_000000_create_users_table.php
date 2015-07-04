@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('phone', 45)->nullable();
             $table->string('mobile', 45)->nullable();
             $table->string('image')->nullable();
-            $table->string('aboutMe')->nullable();
+            $table->string('about_me')->nullable();
             $table->string('password', 60)->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('google_id')->nullable();

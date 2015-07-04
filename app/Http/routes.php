@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/create-company', ['as' => 'companies.store', 'uses' => 'CompanyController@store']);
     Route::get('/edit-company', ['as' => 'companies.edit', 'uses' => 'CompanyController@edit']);
     Route::put('/edit-company', ['as' => 'companies.update', 'uses' => 'CompanyController@update']);
+
+    Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@getProfile']);
+    Route::post('/profile', ['as' => 'profile.update', 'uses' => 'ProfileController@postProfile']);
 });
 
 Route::get('/sms-test', function()
