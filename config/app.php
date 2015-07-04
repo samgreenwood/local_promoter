@@ -145,10 +145,11 @@ return [
         LocalPromoter\Providers\EventServiceProvider::class,
         LocalPromoter\Providers\RouteServiceProvider::class,
         LocalPromoter\Providers\TwilioServiceProvider::class,
-
+        LocalPromoter\Providers\GooglePlacesServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Alexpechkarev\GoogleGeocoder\GoogleGeocoderServiceProvider::class
+
 
     ],
 
