@@ -2,7 +2,7 @@
 
 use Illuminate\Routing\Controller;
 
-class ReferalController extends Controller
+class ReferralController extends Controller
 {
     /**
      * @var \Services_Twilio
@@ -12,12 +12,13 @@ class ReferalController extends Controller
     /**
      * @var Referal
      */
-    private $referal;
+    private $referral;
 
     /**
      * @var Company
      */
     private $company;
+
     /**
      * @var SurveyResult
      */
@@ -25,12 +26,12 @@ class ReferalController extends Controller
 
     /**
      * @param \Services_Twilio $twilio
-     * @param Referal $referal
+     * @param Referral $referral
      */
-    public function __construct(\Services_Twilio $twilio, Referal $referal, Company $company, SurveyResult $surveyResult)
+    public function __construct(\Services_Twilio $twilio, Referral $referral, Company $company, SurveyResult $surveyResult)
     {
         $this->twilio = $twilio;
-        $this->referal = $referal;
+        $this->referral = $referral;
         $this->company = $company;
         $this->surveyResult = $surveyResult;
     }
@@ -41,7 +42,7 @@ class ReferalController extends Controller
      */
     public function index(Company $company)
     {
-        return view('referals.index', compact('company'));
+        return view('referrals.index', compact('company'));
     }
 
     /**
@@ -54,11 +55,11 @@ class ReferalController extends Controller
 
         $companies = $this->company->whereIn('id', $request->get('companies'));
 
-        $referalData = array_filter($request->only('email', 'mobile', 'facebook_id')); // remove null fields
-        $referal = $this->referal->firstOrNew($referalData);
+        $referralData = array_filter($request->only('email', 'mobile', 'facebook_id')); // remove null fields
+        $referral = $this->referral->firstOrNew($referralData);
 
-        $referal->fill($request->only('first_name' ,'surname', 'email', 'mobile', 'facebook_id'));
-        $referal->save();
+        $referral->fill($referralData);
+        $referral->save();
 
         foreach($companies as $company)
         {
@@ -69,25 +70,25 @@ class ReferalController extends Controller
         $message = sprintf("%s is recommending you to try local business that they have had a great experience with.
         Click here to view localpromoter.com.au/%s", $user->name, $referal->slug);
 
-        if(in_array('phone', $referalData))
+        if(in_array('phone', $refreralData))
         {
             $this->twilio->account->messages->sendMessage(
                 "LocalPromo",
-                $referalData['phone'],
+                $referralData['phone'],
                 $message
             );
         }
 
-        if(in_array('email', $referalData))
+        if(in_array('email', $referralData))
         {
-              \Mail::send('email', compact('message'), function($message) use ($referalData)
+              \Mail::send('email', compact('message'), function($message) use ($referralData)
               {
-                  $message->to = $referalData['email'];
-                  $message->subject = "You have been sent a referal";
+                  $message->to = $referralData['email'];
+                  $message->subject = "You have been sent a referral";
               });
         }
 
-        return redirect()->back()->withMessage('Referal has been sent!');
+        return redirect()->back()->withMessage('Referral has been sent!');
 
     }
 }
