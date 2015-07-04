@@ -30,7 +30,29 @@ class CompanyController extends Controller
         $companies = [];
         $geo = \Input::only(['lat', 'lng']);
 
-        $companies = $this->company->limit(500)->get()->toArray();
+        $allCompanies = $this->company->get();
+        foreach ($allCompanies as $company) {
+            if($company->lat && $company->longitude) {
+                $longitude1 = $geo['lng'];
+                $latitude1 = $geo['lat'];
+
+                $longitude2 = $company->longitude;
+                $latitude2 = $company->lat;
+
+                $theta = $longitude1 - $longitude2;
+                $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2))) + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta)));
+                $distance = acos($distance);
+                $distance = rad2deg($distance);
+
+                $distance = $distance * 60 * 1.1515; // distance in miles
+                $distance = $distance * 1.609344; // convert distance to km
+                if ($distance <= 10) {
+                    $companies[] = $company->toArray();
+                }
+            }
+        }
+
+
 
         $this->googlePlaces->location = array((float)$geo['lat'], (float)$geo['lng']);
         $this->googlePlaces->radius   = 1000;
