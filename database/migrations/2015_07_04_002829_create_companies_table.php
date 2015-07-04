@@ -16,8 +16,11 @@ class CreateCompaniesTable extends Migration
             $table->engine="InnoDB";
             $table->increments('id');
             $table->string('name');
+            $table->string('type');
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
+            $table->string('lat');
+            $table->string('long');
             $table->string('town')->nullable();
             $table->string('state')->nullable();
             $table->integer('postcode')->nullable();
