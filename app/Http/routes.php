@@ -54,13 +54,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/profile', ['as' => 'profile.update', 'uses' => 'ProfileController@postProfile']);
 });
 
-Route::get('/sms-test', function()
-{
-    $client = app(Services_Twilio::class);
 
-    $client->account->messages->sendMessage(
-        "LocalPromo",
-        "+610423350768",
-        "Testing twilio!"
-    );
+View::composer('template.base', function($view)
+{
+    $footerCompanies = \LocalPromoter\Company::where('featured', true)->get()->random(2);
+
+    $view->with('footerCompanies', $footerCompanies);
 });

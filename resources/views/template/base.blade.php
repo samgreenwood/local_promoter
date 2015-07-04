@@ -54,30 +54,20 @@
                         <div class="col-md-3 col-sm-3">
                             <article>
                                 <h3>Featured Businesses</h3>
+                                @foreach($footerCompanies as $company)
                                 <div class="property small">
-                                    <a href="property-detail.html">
+                                    <a href="#">
                                         <div class="property-image">
-                                            <img alt="" src="assets/img/properties/property-06.jpg">
+                                            <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=260x195&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}">
                                         </div>
                                     </a>
                                     <div class="info">
-                                        <a href="property-detail.html"><h4>2186 Rinehart Road</h4></a>
-                                        <figure>Doral, FL 33178 </figure>
-                                        <div class="tag price">$ 72,000</div>
+                                        <a href="property-detail.html"><h4>{{$company->name}}</h4></a>
+                                        <figure>{{$company->town}} {{$company->state}}</figure>
+                                        <a style="color:white" href="#" class="tag price">View</a>
                                     </div>
                                 </div><!-- /.property -->
-                                <div class="property small">
-                                    <a href="property-detail.html">
-                                        <div class="property-image">
-                                            <img alt="" src="assets/img/properties/property-09.jpg">
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <a href="property-detail.html"><h4>2479 Murphy Court</h4></a>
-                                        <figure>Minneapolis, MN 55402</figure>
-                                        <div class="tag price">$ 36,000</div>
-                                    </div>
-                                </div><!-- /.property -->
+                                @endforeach
                             </article>
                         </div><!-- /.col-sm-3 -->
                         <div class="col-md-3 col-sm-3">
@@ -96,7 +86,7 @@
                             <article>
                                 <h3>Useful Links</h3>
                                 <ul class="list-unstyled list-links">
-                                    <li><a href="#">All Businesses</a></li>
+                                    <li><a href="{{route('company.index')}}">All Businesses</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
                                     <li><a href="{{route('login')}}">Login and Register Account</a></li>
                                     <li><a href="#">FAQ</a></li>
