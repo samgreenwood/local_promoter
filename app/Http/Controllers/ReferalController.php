@@ -70,7 +70,7 @@ class ReferralController extends Controller
         $message = sprintf("%s is recommending you to try local business that they have had a great experience with.
         Click here to view localpromoter.com.au/%s", $user->name, $referal->slug);
 
-        if(in_array('phone', $refreralData))
+        if(in_array('phone', $referralData))
         {
             $this->twilio->account->messages->sendMessage(
                 "LocalPromo",
