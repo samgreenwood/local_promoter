@@ -2,3 +2,8 @@
     min-height: 59px;
     margin-bottom: -8px;
 }
+
+.testimonials-carousel .testimonial img {
+     height: auto;
+    width: 80px !important;
+}

@@ -35,6 +35,19 @@ class DatabaseSeeder extends Seeder
             ['user_id' => 1, 'company_id' => 3, 'reward_id' => 2, 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
         ]);
 
+        \DB::table('survey_results')->insert([
+            ['user_id' => 1, 'company_id' => 1, 'rating' => 9, 'note' => 'Very good service!'],
+            ['user_id' => 1, 'company_id' => 1, 'rating' => 9, 'note' => 'hfgyewugfyefuysdbfbjds bf hjdshfbdhsjf dbshfbhdsfhfvhjdsvhfsvhfvdsvfv sgfgdvs g fvdsgfvghsd']
+        ]);
+
+        \DB::table('referrals')->insert([
+            ['first_name' => 'David', 'surname' => 'Smith', 'email' => 'david@codium.com.au', 'slug' => 'wegydsg']
+        ]);
+
+        \DB::table('surveyresult_referals')->insert([
+            ['surveyresult_id' => 1, 'referal_id' => 1]
+        ]);
+
         Model::reguard();
     }
 }
