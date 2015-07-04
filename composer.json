@@ -6,7 +6,10 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "laravel/socialite": "~2.0",
+        "egeloen/google-map": "^1.4",
+        "twilio/sdk": "^4.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -19,7 +22,7 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "LocalPromoter\\": "app/"
         }
     },
     "autoload-dev": {

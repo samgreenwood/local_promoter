@@ -30,9 +30,15 @@ return [
     ],
 
     'stripe' => [
-        'model'  => App\User::class,
+        'model'  => LocalPromoter\User::class,
         'key'    => '',
         'secret' => '',
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT'),
     ],
 
 ];

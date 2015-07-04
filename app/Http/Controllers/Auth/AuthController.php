@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace LocalPromoter\Http\Controllers\Auth;
 
-use App\User;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
+use LocalPromoter\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use LocalPromoter\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -62,4 +64,33 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * @return mixed
+     */
+    public function redirect($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function handle($provider)
+    {
+        $socialUser = Socialite::driver($provider)->user();
+
+        $user = User::firstOrNew(['email' => $socialUser->getEmail()]);
+        $user->name = $socialUser->getName();
+
+        $id = $provider . "_id";
+        $user->{$id} = $socialUser->getId();
+
+        $user->save();
+
+        \Auth::login($user);
+
+        return redirect(route('home'));
+    }
+
 }
