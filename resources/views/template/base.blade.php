@@ -22,6 +22,7 @@
 
 <body class="page-homepage navigation-fixed-top map-google loaded" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
 
+@yield('facebook')
 <!-- Wrapper -->
 <div class="wrapper">
 

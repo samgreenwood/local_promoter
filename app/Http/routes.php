@@ -28,6 +28,15 @@ Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthCont
 Route::get('/api/companies', ['as' => 'api.companies.index', 'uses' => 'API\CompanyController@index']);
 
 Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/test', function() {
+
+        $fb = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
+        $token = Session::get('facebook_access_token');
+        $fb->setDefaultAccessToken($token);
+
+    });
+
     Route::resource('company', 'CompanyController');
 
     Route::post('/users/{userId}/hide', 'CompanyController@hideForUser');
