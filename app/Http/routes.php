@@ -11,9 +11,6 @@
 |
 */
 
-
-use LocalPromoter\Company;
-
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/home', ['as' => 'home_path', 'uses' => 'HomeController@index']);
 
