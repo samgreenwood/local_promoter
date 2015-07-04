@@ -56,9 +56,9 @@
                                 <h3>Featured Businesses</h3>
                                 @foreach ($featured as $company)
                                 <div class="property small">
-                                    <a href="property-detail.html">
+                                    <a href="#">
                                         <div class="property-image">
-                                            <img alt="" src="assets/img/properties/property-06.jpg">
+                                            <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=100x75&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}">
                                         </div>
                                     </a>
                                     <div class="info">
@@ -86,7 +86,7 @@
                             <article>
                                 <h3>Useful Links</h3>
                                 <ul class="list-unstyled list-links">
-                                    <li><a href="#">All Businesses</a></li>
+                                    <li><a href="{{route('company.index')}}">All Businesses</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
                                     <li><a href="{{route('login')}}">Login and Register Account</a></li>
                                     <li><a href="#">FAQ</a></li>

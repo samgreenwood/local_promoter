@@ -94,7 +94,7 @@
                         <div class="property">
                             <a href="property-detail.html">
                                 <div class="property-image">
-                                    <img alt="" src="assets/img/properties/property-09.jpg">
+                                    <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=260x195&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
