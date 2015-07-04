@@ -1,6 +1,7 @@
 <?php namespace LocalPromoter\Http\Controllers;
 
 use LocalPromoter\UserReward;
+use LocalPromoter\Company;
 
 class HomeController extends Controller
 {
@@ -10,7 +11,8 @@ class HomeController extends Controller
     public function index()
     {
         $userRewards = UserReward::all();
+        $companies = Company::limit(8)->get();
 
-        return view('home', compact('userRewards'));
+        return view('home', compact('userRewards', 'companies'));
     }
 }

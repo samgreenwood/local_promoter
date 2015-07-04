@@ -27,6 +27,8 @@ Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthCont
 
 Route::get('/api/companies', ['as' => 'api.companies.index', 'uses' => 'API\CompanyController@index']);
 
+Route::resource('company','CompanyController');
+
 Route::get('/sms-test', function()
 {
     $client = app(Services_Twilio::class);
