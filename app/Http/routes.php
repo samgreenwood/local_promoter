@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('company', 'CompanyController');
 
     Route::post('/users/{userId}/hide', 'CompanyController@hideForUser');
+    Route::post('/users/{userId}/survey', 'CompanyController@storeSurvey');
+    Route::post('/users/{userId}/survey/complete', 'CompanyController@storeSurveyComplete');
 });
 
 Route::get('/sms-test', function()

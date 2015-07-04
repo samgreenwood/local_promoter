@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="page navigation-fixed-top page-sign-in page-account  map-google" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
+<body class="page-homepage navigation-fixed-top map-google loaded" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
 
 <!-- Wrapper -->
 <div class="wrapper">

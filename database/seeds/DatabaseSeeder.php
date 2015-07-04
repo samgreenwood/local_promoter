@@ -48,6 +48,8 @@ class DatabaseSeeder extends Seeder
             ['surveyresult_id' => 1, 'referal_id' => 1]
         ]);
 
+        \DB::table('companies')->whereIn('id', [1,2,3,4])->update(['featured' => 1]);
+
         Model::reguard();
     }
 }

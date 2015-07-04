@@ -10,6 +10,11 @@
 
 .actions-holder {
     min-height:133px;
+    width:100%;
+}
+
+.property .info {
+    width:100%;
 }
 
 .rating-holder {
@@ -28,7 +33,10 @@
     float:left;
     text-align: center;
     margin-right:5px;
+    cursor:pointer;
 }
+
+
 
 .display-lines .property .type {
     top: 0;
@@ -39,4 +47,8 @@
 
 #page-content {
     margin-top: 110px;
+}
+
+.property {
+    margin-top:26px;
 }

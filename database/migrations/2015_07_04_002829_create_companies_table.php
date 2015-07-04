@@ -27,6 +27,7 @@ class CreateCompaniesTable extends Migration
             $table->string('phone')->nullable();
             $table->string('verification_code')->nullable();
             $table->boolean('verified')->default(false);
+            $table->tinyInteger('featured')->default(0);
             $table->timestamps();
         });
     }
