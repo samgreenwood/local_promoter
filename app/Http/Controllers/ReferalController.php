@@ -27,6 +27,8 @@ class ReferralController extends Controller
     /**
      * @param \Services_Twilio $twilio
      * @param Referral $referral
+     * @param Company $company
+     * @param SurveyResult $surveyResult
      */
     public function __construct(\Services_Twilio $twilio, Referral $referral, Company $company, SurveyResult $surveyResult)
     {
@@ -64,11 +66,11 @@ class ReferralController extends Controller
         foreach($companies as $company)
         {
             $this->surveyResult->where('user_id', $user->id)->where('company_id', $company)->first()
-                ->referals()->attach($referal);
+                ->referals()->attach($referral);
         }
 
         $message = sprintf("%s is recommending you to try local business that they have had a great experience with.
-        Click here to view localpromoter.com.au/%s", $user->name, $referal->slug);
+        Click here to view localpromoter.com.au/%s", $user->name, $referral->slug);
 
         if(in_array('phone', $referralData))
         {

@@ -24,4 +24,12 @@ class SurveyResult extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function referrals()
+    {
+        return $this->belongsToMany(Referral::class);
+    }
 }
