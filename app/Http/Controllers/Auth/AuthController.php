@@ -2,6 +2,7 @@
 
 namespace LocalPromoter\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use LocalPromoter\User;
 use Validator;
@@ -67,51 +68,29 @@ class AuthController extends Controller
     /**
      * @return mixed
      */
-    public function googleRedirect()
+    public function redirect($provider)
     {
-        return Socialite::driver('google')->redirect();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function facebookRedirect()
-    {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function googleHandle()
+    public function handle($provider)
     {
-        $user = Socialite::driver('google')->user();
+        $socialUser = Socialite::driver($provider)->user();
 
-        $user = User::firstOrNew(['email' => $user->getEmail()]);
-        $user->name = $user->getName();
+        $user = User::firstOrNew(['email' => $socialUser->getEmail()]);
+        $user->name = $socialUser->getName();
+
+        $id = $provider . "_id";
+        $user->{$id} = $socialUser->getId();
+
         $user->save();
 
         \Auth::login($user);
 
-        return redirect('home');
+        return redirect(route('home'));
     }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function facebookHandle()
-    {
-        $user = Socialite::driver('facebook')->user();
-
-        $user = User::firstOrNew(['email' => $user->getEmail()]);
-        $user->name = $user->getName();
-        $user->save();
-
-        \Auth::login($user);
-
-        return redirect('home');
-
-    }
-
 
 }
