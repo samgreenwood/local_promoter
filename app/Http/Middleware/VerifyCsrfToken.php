@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         '/users/{userId}/hide',
-        '/users/{userId}/survey'
+        '/users/{userId}/survey',
+        '/verify-company/call'
     ];
 }
