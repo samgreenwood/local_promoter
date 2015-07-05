@@ -37,7 +37,6 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     closeBoxURL: "assets/img/close-btn.png",
                     infoBoxClearance: new google.maps.Size(1, 1)
                 };
-                console.log(locations[i])
                 var marker = new MarkerWithLabel({
                     title: locations[i]['name'],
                     position: new google.maps.LatLng(locations[i]['lat'], locations[i]['longitude']),
@@ -48,16 +47,23 @@ function createHomepageGoogleMap(_latitude,_longitude){
                     labelClass: "marker-style"
                 });
                 newMarkers.push(marker);
+                var image = "";
+                if(locations[i]['image'] != "" && locations[i]['image'] != null) image = '<img src="' + locations[i]['image'] + '">' + '<div><span class="infobox-price">' + locations[i]['name'] + '</span></div>';
+                var address = (locations[i].address1 != null?locations[i].address1:"") + " " + (locations[i].address2 != null?locations[i].address2:"")  + " " + (locations[i].town != null?locations[i].town:"") + " " + (locations[i].address1 != null?locations[i].state:"");
+                var link = "/company/"+locations[i]['id'];
+                if(locations[i]['type'] !== "") {
+                    link += "?type="+locations[i]['type'];
+                }
                 boxText.innerHTML =
                     '<div class="infobox-inner">' +
                         '<a href="' + locations[i]['name'] + '">' +
                         '<div class="infobox-image" style="position: relative">' +
-                        '<img src="' + locations[i][6] + '">' + '<div><span class="infobox-price">' + locations[i][2] + '</span></div>' +
+                        image +
                         '</div>' +
                         '</a>' +
                         '<div class="infobox-description">' +
-                        '<div class="infobox-title">'+locations[i].name+'</div>' +
-                        '<div class="infobox-location">' + locations[i].address1 + '</div>' +
+                        '<div class="infobox-title"><a href="' + link + '">'+locations[i].name+'</a></div>' +
+                        '<div class="infobox-location">' + address + '</div>' +
                         '</div>' +
                         '</div>';
                 //Define the infobox
