@@ -3,6 +3,8 @@
 namespace LocalPromoter;
 
 use Illuminate\Auth\Authenticatable;
+use Laravel\Cashier\Billable;
+use Laravel\Cashier\Contracts\Billable as BillableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -11,6 +13,9 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword;
+    use Billable;
+
+    protected $dates = ['trial_ends_at', 'subscription_ends_at'];
 
     /**
      * The database table used by the model.
@@ -24,7 +29,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'phone', 'email', 'password', 'about_me'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -37,4 +42,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->name;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function hiddenCompanies()
+    {
+        return $this->hasMany(HiddenCompany::class);
+    }
+
+
 }

@@ -16,6 +16,7 @@ class CreateCompaniesTable extends Migration
             $table->engine="InnoDB";
             $table->increments('id');
             $table->string('name');
+            $table->string('description');
             $table->string('type');
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
@@ -27,6 +28,9 @@ class CreateCompaniesTable extends Migration
             $table->string('phone')->nullable();
             $table->string('verification_code')->nullable();
             $table->boolean('verified')->default(false);
+            $table->string('website');
+            $table->string('email');
+            $table->tinyInteger('featured')->default(0);
             $table->timestamps();
         });
     }

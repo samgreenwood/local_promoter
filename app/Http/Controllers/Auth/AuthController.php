@@ -80,6 +80,8 @@ class AuthController extends Controller
     {
         $socialUser = Socialite::driver($provider)->user();
 
+        \Session::put('facebook_access_token', $socialUser->token);
+
         $user = User::firstOrNew(['email' => $socialUser->getEmail()]);
         $user->name = $socialUser->getName();
 

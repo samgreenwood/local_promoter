@@ -12,7 +12,10 @@
         "twilio/sdk": "^4.2",
         "maatwebsite/excel": "^2.0",
         "alexpechkarev/google-geocoder": "^1.0",
-        "joshtronic/php-googleplaces": "^1.0"
+        "laravel/cashier": "~5.0",
+        "joshtronic/php-googleplaces": "^1.0",
+        "sammyk/laravel-facebook-sdk": "~3.0@dev",
+        "facebook/php-sdk-v4": "~5.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

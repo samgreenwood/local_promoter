@@ -146,9 +146,11 @@ return [
         LocalPromoter\Providers\RouteServiceProvider::class,
         LocalPromoter\Providers\TwilioServiceProvider::class,
         LocalPromoter\Providers\GooglePlacesServiceProvider::class,
+        LocalPromoter\Providers\ComposerServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Alexpechkarev\GoogleGeocoder\GoogleGeocoderServiceProvider::class
+        Alexpechkarev\GoogleGeocoder\GoogleGeocoderServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class
 
 
     ],
@@ -200,6 +202,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class
 
     ],
 

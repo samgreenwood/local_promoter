@@ -9,6 +9,9 @@ class SurveyResult extends Model
      */
     public $table = "survey_results";
 
+
+    public $guarded = [];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

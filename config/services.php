@@ -46,5 +46,9 @@ return [
         'client_secret' => env('GOOGLE_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT'),
     ],
+    'stripe' => [
+        'model'  => 'LocalPromoter\User',
+        'secret' => env('STRIPE_API_SECRET'),
+    ],
 
 ];

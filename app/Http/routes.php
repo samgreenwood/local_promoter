@@ -25,17 +25,42 @@ Route::post('/register', ['as' => 'login', 'uses' => 'Auth\AuthController@postRe
 Route::get('/auth/{provider}/redirect', ['as' => 'oauth.redirect', 'uses' => 'Auth\AuthController@redirect']);
 Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthController@handle']);
 
+Route::get('/terms', ['as' => 'terms', 'uses' => 'PagesController@terms']);
+
 Route::get('/api/companies', ['as' => 'api.companies.index', 'uses' => 'API\CompanyController@index']);
 
-Route::resource('company','CompanyController');
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('/sms-test', function()
+    Route::get('/test', function() {
+
+        $fb = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
+        $token = Session::get('facebook_access_token');
+        $fb->setDefaultAccessToken($token);
+
+    });
+
+    Route::get('/search', 'CompanyController@index');
+
+    Route::resource('company', 'CompanyController');
+
+    Route::post('/users/{userId}/hide', 'CompanyController@hideForUser');
+    Route::post('/users/{userId}/survey', 'CompanyController@storeSurvey');
+    Route::post('/users/{userId}/survey/complete', 'CompanyController@storeSurveyComplete');
+    Route::post('/users/{userId}/company/share', 'CompanyController@share');
+
+    Route::get('/create-company', ['as' => 'companies.create', 'uses' => 'CompanyController@create']);
+    Route::post('/create-company', ['as' => 'companies.store', 'uses' => 'CompanyController@store']);
+    Route::get('/edit-company', ['as' => 'companies.edit', 'uses' => 'CompanyController@edit']);
+    Route::put('/edit-company', ['as' => 'companies.update', 'uses' => 'CompanyController@update']);
+
+    Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@getProfile']);
+    Route::post('/profile', ['as' => 'profile.update', 'uses' => 'ProfileController@postProfile']);
+});
+
+
+View::composer('template.base', function($view)
 {
-    $client = app(Services_Twilio::class);
+    $footerCompanies = \LocalPromoter\Company::where('featured', true)->get()->random(2);
 
-    $client->account->messages->sendMessage(
-        "LocalPromo",
-        "+610423350768",
-        "Testing twilio!"
-    );
+    $view->with('footerCompanies', $footerCompanies);
 });

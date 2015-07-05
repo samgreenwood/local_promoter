@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-4">
                         <div class="search-box map">
-                            <form role="form" id="form-map" class="form-map form-search">
+                            <form role="form" id="form-map" class="form-map form-search" action="{{URL::route('company.index')}}">
                                 <h2>Promote Local Business</h2>
                                 <div class="form-group">
                                     <input type="text" name="postcode" placeholder="Postcode"/>
@@ -43,7 +43,7 @@
         <section id="banner">
             <div class="block has-dark-background background-color-default-darker center text-banner">
                 <div class="container">
-                    <h1 class="no-bottom-margin no-border">Local Promoter - Promoting Local Business</a>!</h1>
+                    <h1 class="no-bottom-margin no-border"><strong>Earn Rewards</strong> for promoting local businesses</a>!</h1>
                 </div>
             </div>
         </section><!-- /#banner -->
@@ -94,7 +94,7 @@
                         <div class="property">
                             <a href="property-detail.html">
                                 <div class="property-image">
-                                    <img alt="" src="assets/img/properties/property-09.jpg">
+                                    <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=260x195&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}">
                                 </div>
                                 <div class="overlay">
                                     <div class="info">
@@ -119,43 +119,23 @@
             <div class="container">
                 <header class="section-title"><h2>Testimonials</h2></header>
                 <div class="owl-carousel testimonials-carousel">
+                    @foreach ($testimonials as $surveyResult)
                     <blockquote class="testimonial">
                         <figure>
-                            <div class="image">
-                                <img alt="" src="assets/img/client-01.jpg">
+                            <div class="">
+                                <img src="/assets/img/megaphone.png" alt=""/>
                             </div>
                         </figure>
                         <aside class="cite">
-                            <p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
-                            <footer>Natalie Jenkins</footer>
+                            <p>{{$surveyResult->note}}</p>
+                            <footer>{{$surveyResult->user}}</footer>
                         </aside>
                     </blockquote>
-                    <blockquote class="testimonial">
-                        <figure>
-                            <div class="image">
-                                <img alt="" src="assets/img/client-01.jpg">
-                            </div>
-                        </figure>
-                        <aside class="cite">
-                            <p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
-                            <footer>Natalie Jenkins</footer>
-                        </aside>
-                    </blockquote>
+                    @endforeach
                 </div><!-- /.testimonials-carousel -->
             </div><!-- /.container -->
         </section><!-- /#testimonials -->
-        <section id="partners" class="block">
-            <div class="container">
-                <header class="section-title"><h2>Our Partners</h2></header>
-                <div class="logos">
-                    <div class="logo"><a href=""><img src="assets/img/logo-partner-01.png" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="assets/img/logo-partner-02.png" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="assets/img/logo-partner-03.png" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="assets/img/logo-partner-04.png" alt=""></a></div>
-                    <div class="logo"><a href=""><img src="assets/img/logo-partner-05.png" alt=""></a></div>
-                </div>
-            </div><!-- /.container -->
-        </section><!-- /#partners -->
+
     </div>
     <!-- end Page Content -->
     <!-- Page Footer -->

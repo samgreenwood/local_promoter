@@ -2,3 +2,69 @@
     min-height: 59px;
     margin-bottom: -8px;
 }
+
+.testimonials-carousel .testimonial img {
+     height: auto;
+    width: 80px !important;
+}
+
+.actions-holder {
+    min-height:133px;
+    width:100%;
+}
+
+.property .info {
+    width:100%;
+}
+
+.rating-holder {
+    padding-left:62px;
+    padding-top:5px;
+}
+
+.rating {
+    background-color: #1396e2;
+    background-color: #1396e2;
+    min-height: 35px;
+    border: 1px solid;
+    border-radius: 24px;
+    color: #fff;
+    padding-top: 6px;
+    width:34px;
+    float:left;
+    text-align: center;
+    margin-right:5px;
+    cursor:pointer;
+}
+
+
+
+.display-lines .property .type {
+    top: 0;
+    right: 0;
+    width: 21px;
+    cursor: pointer;
+}
+
+#page-content {
+    margin-top: 110px;
+}
+
+.property {
+    margin-top:26px;
+}
+
+.actions-holder .question {
+    color: #073855;
+}
+
+/* Media  */
+.actions-holder .share {
+   text-align: center;
+    padding-top:62px;
+}
+
+/* Media  */
+.actions-holder .share-email {
+    border-left: 1px solid #f3f3f3;
+}
