@@ -56,11 +56,9 @@ function createHomepageGoogleMap(_latitude,_longitude){
                 }
                 boxText.innerHTML =
                     '<div class="infobox-inner">' +
-                        '<a href="' + locations[i]['name'] + '">' +
                         '<div class="infobox-image" style="position: relative">' +
                         image +
                         '</div>' +
-                        '</a>' +
                         '<div class="infobox-description">' +
                         '<div class="infobox-title"><a href="' + link + '">'+locations[i].name+'</a></div>' +
                         '<div class="infobox-location">' + address + '</div>' +
