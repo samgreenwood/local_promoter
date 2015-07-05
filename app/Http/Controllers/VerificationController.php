@@ -26,18 +26,24 @@ class VerificationController extends Controller
     }
 
     /**
-     * @param Company $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function verify(Company $company)
+    public function verify()
     {
-        $call = $this->twilio->account->calls->create(
-            '+61404891194',
+        $company = auth()->user()->company;
+
+        $company->verification_code = mt_rand(100000, 999999);
+        $company->verified = false;
+        $company->save();
+
+        $this->twilio->account->calls->create(
+            env('TWILIO_VOICE'),
             $company->phone,
-            url('/verify-user/call')
+            route('company.verify.call')
         );
 
-        return response()->json($call);
+        return view('company.verify', compact('company'));
+
     }
 
     /**

@@ -7,7 +7,7 @@
             <ol class="breadcrumb">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Account</a></li>
-                <li class="active">Update Company</li>
+                <li class="active">Verify Company</li>
             </ol>
         </div>
         <!-- end Breadcrumb -->
@@ -29,26 +29,16 @@
                 <!-- end Sidebar -->
                 <!-- My Properties -->
                 <div class="col-md-9 col-sm-10">
-                    <header><h1>Update Company Profile</h1></header>
+                    <header><h1>Verify Company</h1></header>
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
-                            <form action="{{route('companies.update')}}" role="form" id="form-create-agency" method="post">
-                                <input type="hidden" name="_method" value="PUT">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                @include('company._form')
-                                <section id="submit">
-                                    <hr>
-                                    <div class="form-group">
-                                        <a class="btn btn-warning pull-left" href="{{route('company.verify')}}">Verify Company</a>
-                                        <button type="submit" class="btn btn-default pull-right" id="account-submit">Update Company</button>
-                                    </div><!-- /.form-group -->
-                                </section>
-                            </form>
+                            <p>You will recieve a phone call shorty to the phone number you have specified for this business, please enter the verification code below when prompted.</p>
+                            <h3>Verification Code: {{$company->verification_code}}</h3>
                         </div><!-- /.col-md-8 -->
                     </div><!-- /.row -->
                 </div><!-- /.container -->
             </div><!-- /.col-md-9 -->
             <!-- end My Properties -->
         </div><!-- /.row -->
-</div>
+    </div>
 @stop
