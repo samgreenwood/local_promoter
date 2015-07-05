@@ -71,3 +71,4 @@ View::composer('template.base', function($view)
 
     $view->with('footerCompanies', $footerCompanies);
 });
+

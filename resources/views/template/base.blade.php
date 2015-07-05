@@ -61,9 +61,7 @@
                         <div class="col-md-3 col-sm-3">
                             <article>
                                 <h3>About Us</h3>
-                                <p>Vel fermentum ipsum. Suspendisse quis molestie odio. Interdum et malesuada fames ac ante ipsum
-                                    primis in faucibus. Quisque aliquet a metus in aliquet. Praesent ut turpis posuere, commodo odio
-                                    id, ornare tortor
+                                <p>Local Promoter
                                 </p>
                                 <hr>
                                 <a href="#" class="link-arrow">Read More</a>
