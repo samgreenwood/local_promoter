@@ -1,5 +1,9 @@
 @extends('template.base')
 
+@section('bodyclass')
+inner-page
+@stop
+
 @section('javascriptFiles')
 <script type="text/javascript" src="assets/js/company.js"></script>
 @stop
@@ -41,8 +45,8 @@
                     <section id="results">
                         <header><h1>Business Listing</h1></header>
                         <section id="search-filter">
-                            <figure><h3><i class="fa fa-search"></i>Search Results:</h3>
-                                <span class="search-count">{{$companies->total()}}</span>
+                             <figure><h3><i class="fa fa-search"></i>Search Results:</h3>
+                                <span class="search-count">{{$companies->count()}}</span>
                                 <div class="sorting">
                                     <div class="form-group">
                                         <select name="sorting">
@@ -53,17 +57,19 @@
                                     </div><!-- /.form-group -->
                                 </div>
                             </figure>
+
+
                         </section>
                         <section id="properties" class="display-lines">
                         @foreach ($companies as $company)
-                            <div class="property" data-companyid="{{$company->id}}">
+                            {{--<div class="property" data-companyid="{{$company->id}}">
                                 <!--<figure class="tag status">For Sale</figure>-->
                                 <figure class="type js-hide" title="Hide for today"><i class="fa fa-times"></i>&nbsp;&nbsp;</figure>
                                 <div class="property-image">
                                     <!--<figure class="ribbon">In Hold</figure>-->
                                     <a href="property-detail.html">
 
-                                        <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=260x195&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}">
+                                        <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=260x195&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
                                     </a>
                                 </div>
                                 <div class="info">
@@ -104,7 +110,7 @@
                                     </aside>
                                     <!--<a href="property-detail.html" class="link-arrow">Read More</a>-->
                                 </div>
-                            </div><!-- /.property -->
+                            </div><!-- /.property -->--}}
                             @endforeach
 
 
@@ -123,9 +129,12 @@
                     <section id="sidebar">
                         <aside id="edit-search">
                             <header><h3>Search Businesses</h3></header>
-                            <form role="form" id="form-sidebar" class="form-search" action="properties-listing.html">
+                            <form role="form" id="form-sidebar" class="form-search" action="/search">
                                 <div class="form-group">
-                                    <input type="text" name="postcode" value="{{$postcode}}"/>
+                                    <input type="text" name="postcode" value="{{$postcode}}" placeholder="postcode"/>
+                                </div><!-- /.form-group -->
+                                <div class="form-group">
+                                    <input type="text" name="business_name" value="{{$businessName}}" placeholder="Business Name"/>
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
@@ -159,9 +168,9 @@
                             <header><h3>Featured Businesses</h3></header>
                             @foreach ($featured as $company)
                             <div class="property small">
-                                <a href="property-detail.html">
+                                <a href="{{URL::route('company.show', [$company->id])}}">
                                     <div class="property-image">
-                                        <img alt="" src="assets/img/properties/property-06.jpg">
+                                        <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=100x75&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
                                     </div>
                                 </a>
                                 <div class="info">

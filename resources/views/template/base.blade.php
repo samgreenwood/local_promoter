@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="page-homepage navigation-fixed-top map-google loaded" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
+<body class="page-homepage navigation-fixed-top map-google loaded @yield('bodyclass')" id="page-top" data-spy="scroll" data-target=".navigation" data-offset="90">
 
 @yield('facebook')
 <!-- Wrapper -->
@@ -58,7 +58,7 @@
                                 <div class="property small">
                                     <a href="#">
                                         <div class="property-image">
-                                            <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=100x75&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}">
+                                            <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=100x75&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
                                         </div>
                                     </a>
                                     <div class="info">

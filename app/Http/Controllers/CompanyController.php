@@ -1,6 +1,8 @@
 <?php namespace LocalPromoter\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use LocalPromoter\Company;
 use LocalPromoter\Referral;
 use Illuminate\Http\Request;
@@ -28,8 +30,20 @@ class CompanyController extends Controller
             $query->where('postcode', \Input::get('postcode'));
             $postcode = \Input::get('postcode');
         }
+        $localCompanies = $query->get();
+        $tourism = app('LocalPromoter\TourismRepository');
 
-        $companies = $query->paginate(15);
+        $tourismCompanies = new Collection($tourism->all());
+
+        $tourismCompanies = $tourismCompanies->merge($localCompanies);
+
+        // Paginate
+        $perPage = 10; // Item per page (change if needed)
+        $currentPage = \Input::get('page')?\Input::get('page') - 1:0;
+        $pagedData = $tourismCompanies->slice($currentPage * $perPage, $perPage)->all();
+        $companies = new Paginator($pagedData, count($tourismCompanies), $perPage);
+        $companies->setPath('company');
+
 
         $featured = Company::where('featured', 1)->limit(3)->get();
 
@@ -72,9 +86,9 @@ class CompanyController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function show()
+    public function show($companyId)
     {
-        $company = auth()->user()->company;
+        $company = Company::find($companyId);
 
         return view('company.show', compact('company'));
     }
@@ -157,6 +171,8 @@ class CompanyController extends Controller
 
 
         $referral = Referral::where('email', $email)->get();
+
+        Referral::create(['']);
 
         dd($referral);
 

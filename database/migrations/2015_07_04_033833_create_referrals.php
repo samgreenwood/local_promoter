@@ -15,8 +15,7 @@ class CreateReferrals extends Migration
         Schema::create('referrals', function($table) {
             $table->increments('id');
             $table->string('slug');
-            $table->string('first_name');
-            $table->string('surname');
+            $table->string('name');
             $table->string('email');
             $table->string('mobile');
             $table->string('facebook');
