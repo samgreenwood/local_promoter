@@ -1,11 +1,13 @@
 <?php namespace LocalPromoter;
 
-class Referal extends Model
+use Illuminate\Database\Eloquent\Model;
+
+class Referral extends Model
 {
     /**
      * @var string
      */
-    protected $table = "referals";
+    protected $table = "referrals";
 
     /**
      * @return mixed

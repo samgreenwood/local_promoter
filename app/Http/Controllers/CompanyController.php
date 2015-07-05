@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use LocalPromoter\Company;
+use LocalPromoter\Referral;
 use Illuminate\Http\Request;
 use LocalPromoter\HiddenCompany;
 use LocalPromoter\Http\Requests;
@@ -133,14 +134,34 @@ class CompanyController extends Controller
     {
         $userId = \Auth::user()->id;
         $companyId = \Input::get('company');
-        $rating = \Input::get('rating_id');
+        $ratingId = \Input::get('rating_id');
         $note = \Input::get('note');
 
-        $surveyResult = SurveyResult::find($rating)->update(['note' => $note]);
+        $surveyResult = SurveyResult::find($ratingId)->update(['note' => $note]);
 
         //Generate facebook share link
+        $facebook = config('app.url').'/company/'.$companyId.'?ref='.$ratingId;
 
-
+        return response()->json(['facebook' => $facebook]);
 
     }
+
+    public function share($userId)
+    {
+        $userId = \Auth::user()->id;
+
+        $name = \Input::get('name');
+        $phone = \Input::get('phone');
+        $email = \Input::get('email');
+
+
+
+        $referral = Referral::where('email', $email)->get();
+
+        dd($referral);
+
+
+        dd($name);
+    }
+
 }

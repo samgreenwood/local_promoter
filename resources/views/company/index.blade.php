@@ -181,14 +181,14 @@
 
 <script type="template" id="survery-step-2">
      <div class="row">
-        <div class="col-md-12">
-            Thankyou! Can you please tell us why you gave us a score of <span class="user-rating"></span>
+        <div class="col-md-12 question">
+            Thankyou! Can you please tell us why you gave us a score of <span class="user-rating"></span>?
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
             <div class="form-group">
-                 <textarea class="form-control" id="form-contact-agent-message" rows="5" name="notes"></textarea>
+                 <textarea class="form-control" id="form-contact-agent-message" rows="3" name="notes"></textarea>
             </div>
 
         </div>
@@ -203,19 +203,35 @@
 
 <script type="template" id="survey-step-3">
      <div class="row">
-            <div class="col-md-12">
-                You've indicated that you're highly likely to recommend these businesses to a friend or colleague. Who would you recommend?
+            <div class="col-md-12 question">
+                You've indicated that you're highly likely to recommend this business to a friend or colleague. Who would you like to <span data-trigger="hover" data-toggle="popover" title="Recommend a Business" data-placement="top" data-content="When you recommend a business we will be contacting the referral on your behalf.">recommend?</span>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-
-                 <span class="js-facebook-share">Share with facebook</span>
-
-                </div>
-
+            <div class="col-md-6 share">
+                <a href="#" class="js-facebook-share">Share with facebook</a>
             </div>
-
+            <div class="col-md-6 share-email">
+                <div class="form-group">
+                      <input type="text" class="form-control" name="name" placeholder="Name" />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                      <input type="text" class="form-control" name="phone" placeholder="Mobile or Phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon">@</div>
+                      <input type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group text-right">
+                    <input type="hidden" name="rating_id"/>
+                    <input type="submit" class="btn btn-default js-share" value="Share"/>
+                </div>
         </div>
+
 </script>
 @stop

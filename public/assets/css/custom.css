@@ -57,3 +57,14 @@
 .actions-holder .question {
     color: #073855;
 }
+
+/* Media  */
+.actions-holder .share {
+   text-align: center;
+    padding-top:62px;
+}
+
+/* Media  */
+.actions-holder .share-email {
+    border-left: 1px solid #f3f3f3;
+}

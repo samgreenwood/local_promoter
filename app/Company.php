@@ -35,7 +35,7 @@ class Company extends Model
      */
     public function referals()
     {
-       return $this->belongsToMany(Referal::class);
+       return $this->belongsToMany(Referral::class);
     }
 
     /**

@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/users/{userId}/hide', 'CompanyController@hideForUser');
     Route::post('/users/{userId}/survey', 'CompanyController@storeSurvey');
     Route::post('/users/{userId}/survey/complete', 'CompanyController@storeSurveyComplete');
+    Route::post('/users/{userId}/company/share', 'CompanyController@share');
 
     Route::get('/create-company', ['as' => 'companies.create', 'uses' => 'CompanyController@create']);
     Route::post('/create-company', ['as' => 'companies.store', 'uses' => 'CompanyController@store']);
