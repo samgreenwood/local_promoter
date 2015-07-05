@@ -229,13 +229,13 @@ class CompanyController extends Controller
         $email = \Input::get('email');
 
 
-        $referral = Referral::where('email', $email)->get();
+        //$referral = Referral::where('email', $email)->get();
 
-        if ($referral) {
+        //if ($referral) {
             //Link survey to this referral user
-        } else {
-            Referral::create(['name' => $name, 'phone' => $phone, 'email' => $email]);
-        }
+        //} else {
+            Referral::create(['name' => $name, 'mobile' => $phone, 'email' => $email]);
+        //}
 
         return response()->json([]);
     }
