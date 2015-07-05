@@ -31,6 +31,8 @@ class CreateCompaniesTable extends Migration
             $table->string('website');
             $table->string('email');
             $table->tinyInteger('featured')->default(0);
+            $table->string('tourism_id');
+            $table->string('google_id');
             $table->timestamps();
         });
     }
