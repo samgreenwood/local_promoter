@@ -62,55 +62,112 @@ inner-page
                         </section>
                         <section id="properties" class="display-lines">
                         @foreach ($companies as $company)
-                            {{--<div class="property" data-companyid="{{$company->id}}">
-                                <!--<figure class="tag status">For Sale</figure>-->
-                                <figure class="type js-hide" title="Hide for today"><i class="fa fa-times"></i>&nbsp;&nbsp;</figure>
-                                <div class="property-image">
-                                    <!--<figure class="ribbon">In Hold</figure>-->
-                                    <a href="property-detail.html">
+                            @if(isset($company->productId))
+                                    <div class="property" data-companyid="{{$company->productId}}">
+                                        <!--<figure class="tag status">For Sale</figure>-->
+                                        <figure class="type js-hide" title="Hide for today"><i class="fa fa-times"></i>&nbsp;&nbsp;</figure>
+                                        <div class="property-image">
+                                            <!--<figure class="ribbon">In Hold</figure>-->
+                                            <a href="property-detail.html">
 
-                                        <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=260x195&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
-                                    </a>
-                                </div>
-                                <div class="info">
-                                    <header>
-                                        <a href="property-detail.html"><h3>{{$company}}</h3></a>
-                                        <figure>{{$company->getAddress()}}</figure>
-                                    </header>
-                                    <!--<div class="tag price">$ 38,000</div>-->
-                                    <aside class="actions-holder">
-
-                                    <div class="row">
-                                        <div class="col-md-12 question">
-                                        How likely are you to recommend {{$company}} to a friend or colleague?
+                                                <img alt="" src="{{$company->productImage}}">
+                                            </a>
                                         </div>
-                                    </div>
+                                        <div class="info">
+                                            <header>
+                                                <a href="property-detail.html"><h3>{{$company->productName}}</h3></a>
+                                                @if(isset($company->addresses[0]))
+                                                <figure>{{$company->addresses[0]->address_line}} {{$company->addresses[0]->city}} {{$company->addresses[0]->state}}</figure>
+                                                @else
+                                                    <figure></figure>
+                                                @endif
+                                            </header>
+                                            <!--<div class="tag price">$ 38,000</div>-->
+                                            <aside class="actions-holder">
+
+                                                <div class="row">
+                                                    <div class="col-md-12 question">
+                                                        How likely are you to recommend {{$company->productName}} to a friend or colleague?
+                                                    </div>
+                                                </div>
 
 
-                                    <div class="rating-holder">
-                                        <div class="rating">0</div>
-                                        <div class="rating">1</div>
-                                        <div class="rating">2</div>
-                                        <div class="rating">3</div>
-                                        <div class="rating">4</div>
-                                        <div class="rating">5</div>
-                                        <div class="rating">6</div>
-                                        <div class="rating">7</div>
-                                        <div class="rating">8</div>
-                                        <div class="rating">9</div>
-                                        <div class="rating">10</div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="row">
-                                        <div class="col-xs-6 text-left">0 - Not likely</div>
-                                        <div class="col-xs-6 text-right">10 - Very likely</div>
-                                    </div>
+                                                <div class="rating-holder">
+                                                    <div class="rating">0</div>
+                                                    <div class="rating">1</div>
+                                                    <div class="rating">2</div>
+                                                    <div class="rating">3</div>
+                                                    <div class="rating">4</div>
+                                                    <div class="rating">5</div>
+                                                    <div class="rating">6</div>
+                                                    <div class="rating">7</div>
+                                                    <div class="rating">8</div>
+                                                    <div class="rating">9</div>
+                                                    <div class="rating">10</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="row">
+                                                    <div class="col-xs-6 text-left">0 - Not likely</div>
+                                                    <div class="col-xs-6 text-right">10 - Very likely</div>
+                                                </div>
 
 
-                                    </aside>
-                                    <!--<a href="property-detail.html" class="link-arrow">Read More</a>-->
-                                </div>
-                            </div><!-- /.property -->--}}
+                                            </aside>
+                                            <!--<a href="property-detail.html" class="link-arrow">Read More</a>-->
+                                        </div>
+                                    </div><!-- /.property -->
+                                @else
+                                    <div class="property" data-companyid="{{$company->id}}">
+                                        <!--<figure class="tag status">For Sale</figure>-->
+                                        <figure class="type js-hide" title="Hide for today"><i class="fa fa-times"></i>&nbsp;&nbsp;</figure>
+                                        <div class="property-image">
+                                            <!--<figure class="ribbon">In Hold</figure>-->
+                                            <a href="property-detail.html">
+
+                                                <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=260x195&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
+                                            </a>
+                                        </div>
+                                        <div class="info">
+                                            <header>
+                                                <a href="property-detail.html"><h3>{{$company}}</h3></a>
+                                                <figure>{{$company->getAddress()}}</figure>
+                                            </header>
+                                            <!--<div class="tag price">$ 38,000</div>-->
+                                            <aside class="actions-holder">
+
+                                                <div class="row">
+                                                    <div class="col-md-12 question">
+                                                        How likely are you to recommend {{$company}} to a friend or colleague?
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="rating-holder">
+                                                    <div class="rating">0</div>
+                                                    <div class="rating">1</div>
+                                                    <div class="rating">2</div>
+                                                    <div class="rating">3</div>
+                                                    <div class="rating">4</div>
+                                                    <div class="rating">5</div>
+                                                    <div class="rating">6</div>
+                                                    <div class="rating">7</div>
+                                                    <div class="rating">8</div>
+                                                    <div class="rating">9</div>
+                                                    <div class="rating">10</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="row">
+                                                    <div class="col-xs-6 text-left">0 - Not likely</div>
+                                                    <div class="col-xs-6 text-right">10 - Very likely</div>
+                                                </div>
+
+
+                                            </aside>
+                                            <!--<a href="property-detail.html" class="link-arrow">Read More</a>-->
+                                        </div>
+                                    </div><!-- /.property -->
+                                @endif
+
                             @endforeach
 
 
