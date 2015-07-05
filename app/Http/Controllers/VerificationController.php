@@ -64,7 +64,7 @@ class VerificationController extends Controller
             $company = $this->company->where('phone', $calledNumber)->first();
 
             if ($company) {
-                if ($request->get('digits') === $company->verification_code) {
+                if ($request->get('Digits') === $company->verification_code) {
                     $company->verified = true;
                     $company->save();
 
