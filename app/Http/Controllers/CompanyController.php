@@ -58,7 +58,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->company_id) return redirect()->route('companies.edit');
+        if(auth()->user()->company_id) return redirect()->route('companies.edit', [auth()->user()->company_id]);
 
         $company = new Company();
 
