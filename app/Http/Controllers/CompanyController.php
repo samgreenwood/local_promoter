@@ -72,9 +72,9 @@ class CompanyController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function show()
+    public function show($companyId)
     {
-        $company = auth()->user()->company;
+        $company = Company::find($companyId);
 
         return view('company.show', compact('company'));
     }
@@ -157,6 +157,8 @@ class CompanyController extends Controller
 
 
         $referral = Referral::where('email', $email)->get();
+
+        Referral::create(['']);
 
         dd($referral);
 

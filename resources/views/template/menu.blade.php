@@ -27,12 +27,12 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="navbar-brand nav" id="brand">
-                <a href=""><img src="assets/img/LP.png" alt="brand"></a>
+                <a href=""><img src="/assets/img/LP.png" alt="brand"></a>
             </div>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
             <ul class="nav navbar-nav">
-                <li><a href="/home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/how-it-works">How it Works</a></li>
                 <li><a href="/search">Get Started</a></li>
                 <li><a href="/login">Register a Business</a></li>

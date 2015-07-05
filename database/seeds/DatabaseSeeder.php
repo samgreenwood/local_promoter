@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \DB::table('referrals')->insert([
-            ['first_name' => 'David', 'surname' => 'Smith', 'email' => 'david@codium.com.au', 'slug' => 'wegydsg']
+            ['name' => 'David Smith', 'email' => 'david@codium.com.au', 'slug' => 'wegydsg']
         ]);
 
         \DB::table('surveyresult_referals')->insert([
