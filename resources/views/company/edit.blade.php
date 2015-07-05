@@ -39,7 +39,9 @@
                                 <section id="submit">
                                     <hr>
                                     <div class="form-group">
+                                        @if(!$company->verified)
                                         <a class="btn btn-warning pull-left" href="{{route('company.verify')}}">Verify Company</a>
+                                        @endif
                                         <button type="submit" class="btn btn-default pull-right" id="account-submit">Update Company</button>
                                     </div><!-- /.form-group -->
                                 </section>
