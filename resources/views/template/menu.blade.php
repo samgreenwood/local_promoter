@@ -1,7 +1,7 @@
 <div class="secondary-navigation">
     <div class="container">
         <div class="contact">
-            <figure><strong>Phone:</strong></figure>
+            <figure><strong>Phone:</strong>+61 (08) 7444 4899</figure>
             <figure><strong>Email:</strong>contact@localpromoter.com.au</figure>
         </div>
         <div class="user-area">
