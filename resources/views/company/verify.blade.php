@@ -1,5 +1,9 @@
 @extends('template.base')
 
+@section('bodyclass')
+    inner-page
+@stop
+
 @section('javascript')
     $('document').ready(function()
     {
