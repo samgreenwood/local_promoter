@@ -59,7 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
-Route::get('/verify-company/call', ['as' => 'company.verify.call', 'uses' => 'VerificationController@call']);
+Route::post('/verify-company/call', ['as' => 'company.verify.call', 'uses' => 'VerificationController@call']);
 
 
 View::composer('template.base', function($view)
