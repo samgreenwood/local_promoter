@@ -28,6 +28,9 @@
                             <ul class="sidebar-navigation">
                                 <li><a href="{{route('profile')}}"><i class="fa fa-user"></i><span>Profile</span></a></li>
                                 <li class="active"><a href="{{route('companies.create')}}"><i class="fa fa-home"></i><span>My Company</span></a></li>
+                                @if(auth()->user()->company)
+                                    <li><a href="{{route('company.dashboard')}}"><i class="fa fa-dollar"></i><span>My Company Statistics</span></a></li>
+                                @endif
                             </ul>
                         </aside>
                     </section><!-- /#sidebar -->
@@ -35,7 +38,7 @@
                 <!-- end Sidebar -->
                 <!-- My Properties -->
                 <div class="col-md-9 col-sm-10">
-                    <header><h1>Update Company Profile</h1></header>
+                    <header><h1>My Company Profile</h1></header>
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <form action="{{route('companies.update')}}" role="form" id="form-create-agency" method="post">

@@ -20,7 +20,7 @@ Route::post('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@postLogin
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 Route::get('/register', ['as' => 'register_path', 'uses' => 'Auth\AuthController@getRegister']);
-Route::post('/register', ['as' => 'login', 'uses' => 'Auth\AuthController@postRegister']);
+Route::post('/register', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
 
 Route::get('/auth/{provider}/redirect', ['as' => 'oauth.redirect', 'uses' => 'Auth\AuthController@redirect']);
 Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthController@handle']);
@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/edit-company', ['as' => 'companies.update', 'uses' => 'CompanyController@update']);
     Route::get('/verify-company', ['as' => 'company.verify', 'uses' => 'VerificationController@verify']);
     Route::get('/verify-company-status', ['as' => 'company.verification-status', 'uses' => 'VerificationController@isVerified']);
+    Route::get('/company-dashboard', ['as' => 'company.dashboard', 'uses' => 'CompanyController@dashboard']);
 
     Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@getProfile']);
     Route::post('/profile', ['as' => 'profile.update', 'uses' => 'ProfileController@postProfile']);

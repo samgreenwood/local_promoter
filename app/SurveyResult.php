@@ -33,6 +33,6 @@ class SurveyResult extends Model
      */
     public function referrals()
     {
-        return $this->belongsToMany(Referral::class);
+        return $this->belongsToMany(Referral::class, 'surveyresult_referals', 'surveyresult_id', 'referal_id');
     }
 }
