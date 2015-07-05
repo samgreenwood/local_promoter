@@ -33,7 +33,7 @@ class VerificationController extends Controller
     {
         $company = auth()->user()->company;
 
-        if(!$company->verified) return redirect()->back()->withMessage('Company Already Verified');
+        if($company->verified) return redirect(route('companies.edit'))->withMessage('Company Already Verified');
 
         $company->verification_code = mt_rand(100000, 999999);
         $company->verified = false;
