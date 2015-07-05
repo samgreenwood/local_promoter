@@ -152,14 +152,22 @@ class CompanyController extends Controller
     public function dashboard()
     {
         $company = auth()->user()->company;
-        $surveyResults = $company->surveyResults;
 
-        $referrals = new Collection();
+        $surveyResults = [];
+        $referrals = [];
 
-        foreach($surveyResults as $surveyResult)
+        if($company)
         {
-            $referrals = $referrals->merge($surveyResult->referrals);
+            $surveyResults = $company->surveyResults;
+
+            $referrals = new Collection();
+
+            foreach($surveyResults as $surveyResult)
+            {
+                $referrals = $referrals->merge($surveyResult->referrals);
+            }
         }
+
 
 
         return view('company.dashboard', compact('company', 'surveyResults', 'referrals'));
