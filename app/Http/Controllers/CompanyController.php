@@ -225,7 +225,7 @@ class CompanyController extends Controller
             Referral::create(['name' => $name, 'phone' => $phone, 'email' => $email]);
         }
 
-        return true;
+        return response()->json([]);
     }
 
 }
