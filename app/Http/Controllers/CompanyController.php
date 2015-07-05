@@ -226,7 +226,7 @@ class CompanyController extends Controller
         //if ($referral) {
             //Link survey to this referral user
         //} else {
-            Referral::create(['name' => $name, 'phone' => $phone, 'email' => $email]);
+            Referral::create(['name' => $name, 'mobile' => $phone, 'email' => $email]);
         //}
 
         return response()->json([]);
