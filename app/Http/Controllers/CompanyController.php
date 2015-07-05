@@ -126,7 +126,11 @@ class CompanyController extends Controller
     public function edit($companyId)
     {
         $company = Company::find($companyId);
-       // $company = auth()->user()->company;
+
+        if (auth()->user()->company && auth()->user()->company->id != $companyId && $company->tourism_id == '') {
+            return redirect('/');
+        }
+
 
         return view('company.edit', compact('company'));
     }
