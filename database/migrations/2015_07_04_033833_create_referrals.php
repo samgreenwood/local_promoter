@@ -19,6 +19,8 @@ class CreateReferrals extends Migration
             $table->string('email');
             $table->string('mobile');
             $table->string('facebook');
+            $table->boolean('contacted')->default(0);
+            $table->boolean('lead_to_work')->default(0);
 
         });
     }

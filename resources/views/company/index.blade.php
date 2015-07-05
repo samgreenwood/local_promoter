@@ -195,24 +195,24 @@ inner-page
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
-                                    <select name="country">
+                                    <select name="Category">
                                         <option value="">Category</option>
-                                        <option value="1">France</option>
-                                        <option value="2">Great Britain</option>
-                                        <option value="3">Spain</option>
-                                        <option value="4">Russia</option>
-                                        <option value="5">United States</option>
+                                        <option value="1">Accommodation</option>
+                                        <option value="2">General Services</option>
+                                        <option value="3">Hire</option>
+                                        <option value="4">Tour</option>
+                                        <option value="5">Transport</option>
                                     </select>
                                 </div><!-- /.form-group -->
 
                                 <div class="form-group">
-                                    <select name="district">
+                                    <select name="Council">
                                         <option value="">Council Area</option>
-                                        <option value="1">Manhattan</option>
-                                        <option value="2">The Bronx</option>
-                                        <option value="3">Brooklyn</option>
-                                        <option value="4">Queens</option>
-                                        <option value="5">Staten Island</option>
+                                        <option value="1">Adelaide</option>
+                                        <option value="2">Burnside</option>
+                                        <option value="3">Mitcham</option>
+                                        <option value="4">Marion</option>
+                                        <option value="5">Holdfast Bay</option>
                                     </select>
                                 </div><!-- /.form-group -->
 
@@ -275,7 +275,7 @@ inner-page
         </div>
         <div class="row">
             <div class="col-md-6 share">
-                <a href="#" class="js-facebook-share">Share with facebook</a>
+                <a href="#" class="js-facebook-share">Share on <i class="fa fa-facebook"></i> Facebook</a>
             </div>
             <div class="col-md-6 share-email">
                 <div class="form-group">

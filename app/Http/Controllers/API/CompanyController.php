@@ -63,7 +63,7 @@ class CompanyController extends Controller
             }
 
 
-            $this->googlePlaces->location = array((float)$geo['lat'], (float)$geo['lng']);
+            /*$this->googlePlaces->location = array((float)$geo['lat'], (float)$geo['lng']);
             $this->googlePlaces->radius   = 10000;
             $nearBy = $this->googlePlaces->nearbySearch();
             if($nearBy['status'] == "OK") {
@@ -76,7 +76,7 @@ class CompanyController extends Controller
 
                 // merge local companies with near by from google places
                 $companies = array_merge($companies, $nearBy);
-            }
+            }*/
 
             $allCompanies = $this->tourismRepository->radius($geo['lat'], $geo['lng']);
 
