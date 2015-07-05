@@ -52,7 +52,7 @@ class TourismRepository
 
     private function addOptions($options)
     {
-        $this->option += $options;
+        $this->options += $options;
     }
 
     private function url($options)
