@@ -53,13 +53,22 @@ class VerificationController extends Controller
     }
 
     /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function isVerified()
+    {
+        $company = auth()->user()->company;
+
+        return response()->json(['verified' => $company->verified]);
+    }
+
+    /**
      * @param Request $request
      * @return Services_Twilio_Twiml
      */
     public function call(Request $request)
     {
         $response = new Services_Twilio_Twiml();
-
 
         if ( ! $request->has('Digits')) {
             $gather = $response->gather(array('numDigits' => 6));

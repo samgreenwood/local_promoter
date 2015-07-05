@@ -1,5 +1,9 @@
 @extends('template.base')
 
+@section('bodyclass')
+    inner-page
+@stop
+
 @section('content')
     <div id="page-content">
         <!-- Breadcrumb -->

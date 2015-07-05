@@ -136,7 +136,7 @@
 <!--[if gt IE 8]>
 <script type="text/javascript" src="/assets/js/ie.js"></script>
 <![endif]-->
-<script>
+<script type="text/javascript">
     _latitude = -34.9290;
     _longitude = 138.6010;
     createHomepageGoogleMap(_latitude,_longitude);
@@ -149,6 +149,10 @@
     @endif
 
     window.token = '{{csrf_token()}}';
+
+    @section('javascript')
+
+    @show
 </script>
 </body>
 </html>
