@@ -1,5 +1,27 @@
 @extends('template.base')
 
+@section('javascript')
+    $('document').ready(function()
+    {
+        var verified = false;
+
+        setInterval(function()
+        {
+            if(verified != "1")
+            {
+                $.getJSON('/verify-company-status', function(data) {
+                    console.log(data);
+                    verified = data.verified;
+                });
+            }
+            else
+            {
+                $('.verification-status').html("Verified");
+            }
+
+        }, 1000);
+    });
+@stop
 @section('content')
     <div id="page-content">
         <!-- Breadcrumb -->
@@ -34,6 +56,7 @@
                         <div class="col-md-12 col-sm-12">
                             <p>You will recieve a phone call shorty to the phone number you have specified for this business, please enter the verification code below when prompted.</p>
                             <h3>Verification Code: {{$company->verification_code}}</h3>
+                            <h3>Verification Status: <span class="verification-status">Not Verified <i class="fa fa-spinner fa-spin"></i></span></h3>
                         </div><!-- /.col-md-8 -->
                     </div><!-- /.row -->
                 </div><!-- /.container -->
