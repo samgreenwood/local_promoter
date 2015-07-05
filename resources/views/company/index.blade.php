@@ -275,7 +275,7 @@ inner-page
         </div>
         <div class="row">
             <div class="col-md-6 share">
-                <a href="#" class="js-facebook-share">Share with facebook</a>
+                <a href="#" class="js-facebook-share">Share on <i class="fa fa-facebook"></i> Facebook</a>
             </div>
             <div class="col-md-6 share-email">
                 <div class="form-group">
