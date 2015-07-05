@@ -20,7 +20,7 @@ Route::post('/login', ['as' => 'login', 'uses' => 'Auth\AuthController@postLogin
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 Route::get('/register', ['as' => 'register_path', 'uses' => 'Auth\AuthController@getRegister']);
-Route::post('/register', ['as' => 'login', 'uses' => 'Auth\AuthController@postRegister']);
+Route::post('/register', ['as' => 'register', 'uses' => 'Auth\AuthController@postRegister']);
 
 Route::get('/auth/{provider}/redirect', ['as' => 'oauth.redirect', 'uses' => 'Auth\AuthController@redirect']);
 Route::get('/auth/{provider}', ['as' => 'oauth.handle', 'uses' => 'Auth\AuthController@handle']);
