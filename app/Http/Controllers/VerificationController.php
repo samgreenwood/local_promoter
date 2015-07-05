@@ -62,7 +62,7 @@ class VerificationController extends Controller
 
         if ( ! $request->has('Digits')) {
             $gather = $response->gather(array('numDigits' => 6));
-            $gather->say("Please enter your verification code.");
+            $gather->say("Please enter your verification code for localpromoter.com.au.");
         } else {
             $calledNumber = $request->get('Called');
 
