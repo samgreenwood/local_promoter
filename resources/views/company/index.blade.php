@@ -42,7 +42,7 @@
                         <header><h1>Business Listing</h1></header>
                         <section id="search-filter">
                             <figure><h3><i class="fa fa-search"></i>Search Results:</h3>
-                                <span class="search-count">{{$companies->total()}}</span>
+                                <span class="search-count">{{$companies->count()}}</span>
                                 <div class="sorting">
                                     <div class="form-group">
                                         <select name="sorting">
@@ -56,7 +56,7 @@
                         </section>
                         <section id="properties" class="display-lines">
                         @foreach ($companies as $company)
-                            <div class="property" data-companyid="{{$company->id}}">
+                            {{--<div class="property" data-companyid="{{$company->id}}">
                                 <!--<figure class="tag status">For Sale</figure>-->
                                 <figure class="type js-hide" title="Hide for today"><i class="fa fa-times"></i>&nbsp;&nbsp;</figure>
                                 <div class="property-image">
@@ -104,7 +104,7 @@
                                     </aside>
                                     <!--<a href="property-detail.html" class="link-arrow">Read More</a>-->
                                 </div>
-                            </div><!-- /.property -->
+                            </div><!-- /.property -->--}}
                             @endforeach
 
 
