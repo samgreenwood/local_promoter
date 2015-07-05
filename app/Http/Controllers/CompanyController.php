@@ -127,8 +127,11 @@ class CompanyController extends Controller
     {
         $company = Company::find($companyId);
 
-        if (auth()->user()->company && auth()->user()->company->id != $companyId && $company->tourism_id == '') {
-            return redirect('/');
+        if(auth()->user->company)
+        {
+            if (auth()->user()->company && auth()->user()->company->id != $companyId && $company->tourism_id == '') {
+                return redirect('/');
+            }
         }
 
 
