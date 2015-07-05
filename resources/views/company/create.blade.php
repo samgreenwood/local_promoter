@@ -1,5 +1,9 @@
 @extends('template.base')
 
+@section('bodyclass')
+    inner-page
+@stop
+
 @section('content')
     <div id="page-content">
         <!-- Breadcrumb -->
@@ -22,6 +26,10 @@
                             <ul class="sidebar-navigation">
                                 <li><a href="{{route('profile')}}"><i class="fa fa-user"></i><span>Profile</span></a></li>
                                 <li class="active"><a href="{{route('companies.create')}}"><i class="fa fa-home"></i><span>My Company</span></a></li>
+                                @if(auth()->user()->company)
+                                    <li><a href="{{route('company.dashboard')}}"><i class="fa fa-dollar"></i><span>My Company Statistics</span></a></li>
+                                @endif
+
                             </ul>
                         </aside>
                     </section><!-- /#sidebar -->

@@ -5,7 +5,7 @@ inner-page
 @stop
 
 @section('javascriptFiles')
-<script type="text/javascript" src="assets/js/company.js"></script>
+<script type="text/javascript" src="/assets/js/company.js"></script>
 @stop
 
 @section('facebook')
@@ -75,7 +75,7 @@ inner-page
                                         </div>
                                         <div class="info">
                                             <header>
-                                                <a href="property-detail.html"><h3>{{$company->productName}}</h3></a>
+                                                <a href="{{URL::route('company.show', [$company->productId])}}?type=tourism"><h3>{{$company->productName}}</h3></a>
                                                 @if(isset($company->addresses[0]))
                                                 <figure>{{$company->addresses[0]->address_line}} {{$company->addresses[0]->city}} {{$company->addresses[0]->state}}</figure>
                                                 @else
@@ -275,7 +275,7 @@ inner-page
         </div>
         <div class="row">
             <div class="col-md-6 share">
-                <a href="#" class="js-facebook-share">Share with facebook</a>
+                <a href="#" class="js-facebook-share">Share on <i class="fa fa-facebook"></i> Facebook</a>
             </div>
             <div class="col-md-6 share-email">
                 <div class="form-group">

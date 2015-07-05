@@ -4,6 +4,10 @@
     inner-page
 @stop
 
+@section('javascriptFiles')
+<script type="text/javascript" src="/assets/js/company.js"></script>
+@stop
+
 @section('content')
     <div class="container">
                 <div class="row">
@@ -11,12 +15,16 @@
                     <div class="col-md-9 col-sm-9">
                         <section id="agent-detail">
 
-                            <header><h1>{{$company}}</h1></header>
+                            <header>
+                                <h1>
+                                    {{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company)}}
+                                </h1>
+                            </header>
                             <section id="agent-info">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-3">
                                         <figure class="agent-image">
-                                         <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=189x189&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
+                                         <img alt="" src="{{($type == 'tourism') ? $tourismCompany->productImage : (($type == 'google') ? $googleCompany->image : 'https://maps.googleapis.com/maps/api/staticmap?center='.$company->getAddress().'&zoom=13&size=189x189&maptype=roadmap&markers=color:red%7Clabel:%7C'.$company->lat.','.$company->longitude.'&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E')}}">
                                          </a>
                                          </figure>
                                     </div><!-- /.col-md-3 -->
@@ -24,22 +32,46 @@
                                         <h3>Contact Info</h3>
                                         <dl>
                                             <dt>Phone:</dt>
-                                            <dd>{{$company->phone}}&nbsp;</dd>
+                                            <dd>{{($type == 'tourism') ? $tourismCompany->comms_ph : (($type == 'google') ? $googleCompany->name : $company->phone)}}&nbsp;</dd>
                                             <dt>Mobile: &nbsp;</dt>
-                                            <dd>{{$company->mobile}}&nbsp;</dd>
+                                            <dd>{{($type == 'tourism') ? '' : (($type == 'google') ? $googleCompany->name : $company->mobile)}}&nbsp;</dd>
                                             <dt>Email:</dt>
-                                            <dd><a href="mailto:{{$company->email}}">{{$company->email}}</a></dd>
+                                            <dd><a href="mailto:{{($type == 'tourism') ? $tourismCompany->comms_em : (($type == 'google') ? $googleCompany->email : $company->email)}}">{{($type == 'tourism') ? $tourismCompany->comms_em : (($type == 'google') ? $googleCompany->name : $company->email)}}</a></dd>
                                         </dl>
                                     </div><!-- /.col-md-5 -->
                                     <div class="col-md-4 col-sm-4">
                                         <h3>Description</h3>
-                                        <p>{{$company->description}}</p>
+                                        <p>{{($type == 'tourism') ? '' : (($type == 'google') ? $googleCompany->name : $company->description)}}</p>
                                     </div><!-- /.col-md-4 -->
                                 </div><!-- /.row -->
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-5 col-sm-offset-3 col-sm-5">
                                         <h3>Address</h3>
-                                        <a href="agency-detail.html" class="agency-logo"><img alt="" src="assets/img/agency-logo-01.png"></a>
+                                            @if ($type == 'tourism')
+                                                @if(isset($tourismCompany->addresses[0]))
+                                                    <dl>
+                                                        <dt>Address Line</dt>
+                                                        <dd>{{$tourismCompany->addresses[0]->address_line}}</dd>
+                                                        <dt>City</dt>
+                                                        <dd>{{$tourismCompany->addresses[0]->city}}</dd>
+                                                        <dt>State</dt>
+                                                        <dd>{{$tourismCompany->addresses[0]->state}}</dd>
+                                                    </dl>
+                                                @endif
+                                            @else
+                                                 <dl>
+                                                    <dt>Address Line</dt>
+                                                    <dd>{{$company->adress1}}</dd>
+                                                    <dt>Address Line 2</dt>
+                                                    <dd>{{$company->adress2}}</dd>
+                                                    <dt>City</dt>
+                                                    <dd>{{$company->town}}</dd>
+                                                    <dt>Postcode</dt>
+                                                    <dd>{{$company->postcode}}</dd>
+                                                </dl>
+                                            @endif
+
+
                                     </div><!-- /.col-md-5 -->
                                     <div class="col-md-4 col-sm-4">
                                         <h3>Is this your business?</h3>
@@ -49,493 +81,63 @@
                             </section><!-- /#agent-info -->
                             <hr class="thick">
                             <section id="agent-properties">
-                                <header><h3>My Properties (24)</h3></header>
-                                <div class="layout-expandable">
+                                <header><h3>Survey</h3></header>
+                                  <div class="property" data-companyid="{{$company->productId}}">
+                                <aside class="actions-holder">
+
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-09.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 11,000</div>
-                                                            <h3>3398 Lodgeville Road</h3>
-                                                            <figure>Golden Valley, MN 55427</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>0</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-03.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 38,000</div>
-                                                            <h3>2186 Rinehart Road</h3>
-                                                            <figure>Doral, FL 33178 </figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-06.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 325,000</div>
-                                                            <h3>3705 Brighton Circle Road</h3>
-                                                            <figure>Glenwood, MN 56334</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-4 -->
-                                    </div><!-- /.row-->
+                                        <div class="col-md-12 question">
+                                            How likely are you to recommend {{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company)}} to a friend or colleague?
+                                        </div>
+                                    </div>
+
+
+                                    <div class="rating-holder">
+                                        <div class="rating">0</div>
+                                        <div class="rating">1</div>
+                                        <div class="rating">2</div>
+                                        <div class="rating">3</div>
+                                        <div class="rating">4</div>
+                                        <div class="rating">5</div>
+                                        <div class="rating">6</div>
+                                        <div class="rating">7</div>
+                                        <div class="rating">8</div>
+                                        <div class="rating">9</div>
+                                        <div class="rating">10</div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-02.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 18,000</div>
-                                                            <h3>2506 B Street</h3>
-                                                            <figure>New Brighton, MN 55112</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>280m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-12.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 136,000</div>
-                                                            <h3>3990 Late Avenue</h3>
-                                                            <figure>Kingfisher, OK 73750</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>30m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>0</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-4 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-05.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 12,680</div>
-                                                            <h3>297 Marie Street</h3>
-                                                            <figure>Towson, MD 21204 </figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-4 -->
-                                    </div><!-- /.row-->
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-13.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 13,000</div>
-                                                            <h3>2663 West Side Avenue</h3>
-                                                            <figure>Fort Lee, NJ 07024</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>280m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-04.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 189,000</div>
-                                                            <h3>1821 Pursglove Court</h3>
-                                                            <figure>Dayton, OH 45429 </figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>30m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>0</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-07.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 45,730</div>
-                                                            <h3>1380 Sundown Lane</h3>
-                                                            <figure>Austin, TX 78748</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                    </div><!-- /.row-->
-                                    <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-08.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 38,000</div>
-                                                            <h3>4862 Palmer Road</h3>
-                                                            <figure>Worthington, OH 43085</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>280m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>2</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-11.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 103,000</div>
-                                                            <h3>1453 Calvin Street</h3>
-                                                            <figure>Bel Air, MD 21014</figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>30m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>0</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="property">
-                                                <a href="property-detail.html">
-                                                    <div class="property-image">
-                                                        <img alt="" src="assets/img/properties/property-10.jpg">
-                                                    </div>
-                                                    <div class="overlay">
-                                                        <div class="info">
-                                                            <div class="tag price">$ 9,380</div>
-                                                            <h3>2323 Park Street</h3>
-                                                            <figure>Martinez, CA 94553 </figure>
-                                                        </div>
-                                                        <ul class="additional-info">
-                                                            <li>
-                                                                <header>Area:</header>
-                                                                <figure>240m<sup>2</sup></figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Beds:</header>
-                                                                <figure>3</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Baths:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                            <li>
-                                                                <header>Garages:</header>
-                                                                <figure>1</figure>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </div><!-- /.property -->
-                                        </div><!-- /.col-md-3 -->
-                                    </div><!-- /.row-->
-                                </div>
-                                <div class="center">
-                                    <span class="show-all">Show All Properties</span>
+                                        <div class="col-xs-6 text-left">0 - Not likely</div>
+                                        <div class="col-xs-6 text-right">10 - Very likely</div>
+                                    </div>
+
+
+                                </aside>
                                 </div>
                             </section><!-- /#agent-properties -->
                             <hr class="thick">
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-12">
                                     <section id="agent-testimonials">
                                         <h3>What Other Said About Me</h3>
-                                        <div class="owl-carousel testimonials-carousel small">
-                                            <blockquote class="testimonial">
-                                                <figure>
-                                                    <div class="image">
-                                                        <img alt="" src="assets/img/client-01.jpg">
-                                                    </div>
-                                                </figure>
-                                                <aside class="cite">
-                                                    <p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
-                                                    <footer>Natalie Jenkins</footer>
-                                                </aside>
-                                            </blockquote>
-                                            <blockquote class="testimonial">
-                                                <figure>
-                                                    <div class="image">
-                                                        <img alt="" src="assets/img/client-01.jpg">
-                                                    </div>
-                                                </figure>
-                                                <aside class="cite">
-                                                    <p>Fusce risus metus, placerat in consectetur eu, porttitor a est sed sed dolor lorem cras adipiscing</p>
-                                                    <footer>Natalie Jenkins</footer>
-                                                </aside>
-                                            </blockquote>
+                                        <div class="owl-carousel testimonials-carousel">
+                                             @foreach ($testimonials as $surveyResult)
+                                                <blockquote class="testimonial">
+                                                    <figure>
+                                                        <div class="">
+                                                            <img src="/assets/img/megaphone.png" alt=""/>
+                                                        </div>
+                                                    </figure>
+                                                    <aside class="cite">
+                                                        <p>{{$surveyResult->note}}</p>
+                                                        <footer>{{$surveyResult->user}}</footer>
+                                                    </aside>
+                                                </blockquote>
+                                                @endforeach
                                         </div><!-- /.testimonials-carousel -->
                                     </section><!-- /#agent-testimonial -->
                                 </div><!-- /.col-md-5 -->
-                                <div class="col-md-7">
-                                    <h3>Send Me a Message</h3>
-                                    <div class="agent-form">
-                                        <form role="form" id="form-contact-agent" method="post"  class="clearfix">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="form-contact-agent-name">Your Name<em>*</em></label>
-                                                        <input type="text" class="form-control" id="form-contact-agent-name" name="form-contact-agent-name" required>
-                                                    </div><!-- /.form-group -->
-                                                </div><!-- /.col-md-6 -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="form-contact-agent-email">Your Email<em>*</em></label>
-                                                        <input type="email" class="form-control" id="form-contact-agent-email" name="form-contact-agent-email" required>
-                                                    </div><!-- /.form-group -->
-                                                </div><!-- /.col-md-6 -->
-                                            </div><!-- /.row -->
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="form-contact-agent-message">Your Message<em>*</em></label>
-                                                        <textarea class="form-control" id="form-contact-agent-message" rows="5" name="form-contact-agent-message" required></textarea>
-                                                    </div><!-- /.form-group -->
-                                                </div><!-- /.col-md-12 -->
-                                            </div><!-- /.row -->
-                                            <div class="form-group clearfix">
-                                                <button type="submit" class="btn pull-right btn-default" id="form-contact-agent-submit">Send a Message</button>
-                                            </div><!-- /.form-group -->
-                                            <div id="form-rating-status"></div>
-                                        </form><!-- /#form-contact -->
-                                    </div><!-- /.rating-form -->
-                                </div>
+
                             </div><!-- /.row -->
                         </section><!-- /#agent-detail -->
                     </div><!-- /.col-md-9 -->
@@ -544,122 +146,121 @@
                     <!-- sidebar -->
                     <div class="col-md-3 col-sm-3">
                         <section id="sidebar">
-                            <aside id="edit-search">
-                                <header><h3>Search Properties</h3></header>
-                                <form role="form" id="form-sidebar" class="form-search" action="properties-listing.html">
-                                    <div class="form-group">
-                                        <select name="type">
-                                            <option value="">Status</option>
-                                            <option value="1">Rent</option>
-                                            <option value="2">Sale</option>
-                                        </select>
-                                    </div><!-- /.form-group -->
-                                    <div class="form-group">
-                                        <select name="country">
-                                            <option value="">Country</option>
-                                            <option value="1">France</option>
-                                            <option value="2">Great Britain</option>
-                                            <option value="3">Spain</option>
-                                            <option value="4">Russia</option>
-                                            <option value="5">United States</option>
-                                        </select>
-                                    </div><!-- /.form-group -->
-                                    <div class="form-group">
-                                        <select name="city">
-                                            <option value="">City</option>
-                                            <option value="1">New York</option>
-                                            <option value="2">Los Angeles</option>
-                                            <option value="3">Chicago</option>
-                                            <option value="4">Houston</option>
-                                            <option value="5">Philadelphia</option>
-                                        </select>
-                                    </div><!-- /.form-group -->
-                                    <div class="form-group">
-                                        <select name="district">
-                                            <option value="">District</option>
-                                            <option value="1">Manhattan</option>
-                                            <option value="2">The Bronx</option>
-                                            <option value="3">Brooklyn</option>
-                                            <option value="4">Queens</option>
-                                            <option value="5">Staten Island</option>
-                                        </select>
-                                    </div><!-- /.form-group -->
-                                    <div class="form-group">
-                                        <select name="property-type">
-                                            <option value="">Property Type</option>
-                                            <option value="1">Apartment</option>
-                                            <option value="2">Condominium</option>
-                                            <option value="3">Cottage</option>
-                                            <option value="4">Flat</option>
-                                            <option value="5">House</option>
-                                        </select>
-                                    </div><!-- /.form-group -->
-                                    <div class="form-group">
-                                        <div class="price-range">
-                                            <input id="price-input" type="text" name="price" value="1000;299000">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-default">Search Now</button>
-                                    </div><!-- /.form-group -->
-                                </form><!-- /#form-map -->
-                            </aside><!-- /#edit-search -->
-                            <aside id="featured-properties">
-                                <header><h3>Featured Properties</h3></header>
-                                <div class="property small">
-                                    <a href="property-detail.html">
-                                        <div class="property-image">
-                                            <img alt="" src="assets/img/properties/property-06.jpg">
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <a href="property-detail.html"><h4>2186 Rinehart Road</h4></a>
-                                        <figure>Doral, FL 33178 </figure>
-                                        <div class="tag price">$ 72,000</div>
-                                    </div>
-                                </div><!-- /.property -->
-                                <div class="property small">
-                                    <a href="property-detail.html">
-                                        <div class="property-image">
-                                            <img alt="" src="assets/img/properties/property-09.jpg">
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <a href="property-detail.html"><h4>2479 Murphy Court</h4></a>
-                                        <figure>Minneapolis, MN 55402</figure>
-                                        <div class="tag price">$ 36,000</div>
-                                    </div>
-                                </div><!-- /.property -->
-                                <div class="property small">
-                                    <a href="property-detail.html">
-                                        <div class="property-image">
-                                            <img alt="" src="assets/img/properties/property-03.jpg">
-                                        </div>
-                                    </a>
-                                    <div class="info">
-                                        <a href="property-detail.html"><h4>1949 Tennessee Avenue</h4></a>
-                                        <figure>Minneapolis, MN 55402</figure>
-                                        <div class="tag price">$ 128,600</div>
-                                    </div>
-                                </div><!-- /.property -->
-                            </aside><!-- /#featured-properties -->
-                            <aside id="our-guides">
-                                <header><h3>Our Guides</h3></header>
-                                <a href="#" class="universal-button">
-                                    <figure class="fa fa-home"></figure>
-                                    <span>Buying Guide</span>
-                                    <span class="arrow fa fa-angle-right"></span>
-                                </a><!-- /.universal-button -->
-                                <a href="#" class="universal-button">
-                                    <figure class="fa fa-umbrella"></figure>
-                                    <span>Right Insurance for You</span>
-                                    <span class="arrow fa fa-angle-right"></span>
-                                </a><!-- /.universal-button -->
-                            </aside><!-- /#our-guide -->
-                        </section><!-- /#sidebar -->
-                    </div><!-- /.col-md-3 -->
-                    <!-- end Sidebar -->
+                                                <aside id="edit-search">
+                                                    <header><h3>Search Businesses</h3></header>
+                                                    <form role="form" id="form-sidebar" class="form-search" action="/search">
+                                                        <div class="form-group">
+                                                            <input type="text" name="postcode" value="" placeholder="postcode"/>
+                                                        </div><!-- /.form-group -->
+                                                        <div class="form-group">
+                                                            <input type="text" name="business_name" value="" placeholder="Business Name"/>
+                                                        </div><!-- /.form-group -->
+
+                                                        <div class="form-group">
+                                                            <select name="country">
+                                                                <option value="">Category</option>
+                                                                <option value="1">France</option>
+                                                                <option value="2">Great Britain</option>
+                                                                <option value="3">Spain</option>
+                                                                <option value="4">Russia</option>
+                                                                <option value="5">United States</option>
+                                                            </select>
+                                                        </div><!-- /.form-group -->
+
+                                                        <div class="form-group">
+                                                            <select name="district">
+                                                                <option value="">Council Area</option>
+                                                                <option value="1">Manhattan</option>
+                                                                <option value="2">The Bronx</option>
+                                                                <option value="3">Brooklyn</option>
+                                                                <option value="4">Queens</option>
+                                                                <option value="5">Staten Island</option>
+                                                            </select>
+                                                        </div><!-- /.form-group -->
+
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-default">Search Now</button>
+                                                        </div><!-- /.form-group -->
+                                                    </form><!-- /#form-map -->
+                                                </aside><!-- /#edit-search -->
+                                                <aside id="featured-properties">
+                                                    <header><h3>Featured Businesses</h3></header>
+                                                    @foreach ($featured as $company)
+                                                    <div class="property small">
+                                                        <a href="{{URL::route('company.show', [$company->id])}}">
+                                                            <div class="property-image">
+                                                                <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=100x75&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
+                                                            </div>
+                                                        </a>
+                                                        <div class="info">
+                                                            <a href="property-detail.html"><h4>{{$company}}</h4></a>
+                                                            <figure>{{$company->getAddress()}}</figure>
+                                                            <div class="tag price">9</div>
+                                                        </div>
+                                                    </div><!-- /.property -->
+                                                    @endforeach
+                                                </aside><!-- /#featured-properties -->
+
+                                            </section><!-- /#sidebar -->
+                                        </div><!-- /.col-md-3 -->
+                                        <!-- end Sidebar -->
                 </div><!-- /.row -->
             </div><!-- /.container -->
 
+<script type="template" id="survery-step-2">
+     <div class="row">
+        <div class="col-md-12 question">
+            Thankyou! Can you please tell us why you gave us a score of <span class="user-rating"></span>?
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                 <textarea class="form-control" id="form-contact-agent-message" rows="3" name="notes"></textarea>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <input type="hidden" name="rating_id"/>
+            <input type="submit" class="btn btn-default js-submit" value="Submit"/>
+        </div>
+    </div>
+</script>
+
+<script type="template" id="survey-step-3">
+     <div class="row">
+            <div class="col-md-12 question">
+                You've indicated that you're highly likely to recommend this business to a friend or colleague. Who would you like to <span data-trigger="hover" data-toggle="popover" title="Recommend a Business" data-placement="top" data-content="When you recommend a business we will be contacting the referral on your behalf.">recommend?</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 share">
+                <a href="#" class="js-facebook-share">Share with facebook</a>
+            </div>
+            <div class="col-md-6 share-email">
+                <div class="form-group">
+                      <input type="text" class="form-control" name="name" placeholder="Name" />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon"><i class="fa fa-phone"></i></div>
+                      <input type="text" class="form-control" name="phone" placeholder="Mobile or Phone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon">@</div>
+                      <input type="text" class="form-control" name="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group text-right">
+                    <input type="hidden" name="rating_id"/>
+                    <input type="submit" class="btn btn-default js-share" value="Share"/>
+                </div>
+        </div>
+
+</script>
 @stop
+

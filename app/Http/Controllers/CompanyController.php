@@ -20,6 +20,7 @@ class CompanyController extends Controller
     public function index()
     {
         $postcode = "";
+        $businessName = "";
         $user = \Auth::user();
 
         $hidden = $user->hiddenCompanies()->where('created_at', '>', Carbon::now()->subHours(24));
@@ -47,7 +48,7 @@ class CompanyController extends Controller
 
         $featured = Company::where('featured', 1)->limit(3)->get();
 
-        return view('company.index', compact('companies', 'postcode', 'featured'));
+        return view('company.index', compact('companies', 'postcode', 'featured', 'businessName'));
     }
 
     /**
@@ -88,17 +89,44 @@ class CompanyController extends Controller
      */
     public function show($companyId)
     {
-        $company = Company::find($companyId);
+        $company = "";
+        $tourismCompany = "";
+        $googleCompany = "";
+        $type = \Input::get('type');
 
-        return view('company.show', compact('company'));
+        switch ($type) {
+            case "tourism":
+                $tourism = app('LocalPromoter\TourismRepository');
+                $tourismCompany = $tourism->get();
+
+                $company = Company::where('tourism_id', $companyId)->first();
+
+                if (!$company) {
+                    $company = Company::create(['tourism_id' => $companyId]);
+                }
+
+                break;
+            case "google":
+                break;
+
+            default:
+                $company = Company::find($companyId);
+        }
+
+        $featured = Company::where('featured', 1)->limit(3)->get();
+        $testimonials = SurveyResult::where('rating', '>=', 9)->limit(5)->get();
+
+
+        return view('company.show', compact('type', 'company', 'tourismCompany', 'googleCompany', 'featured', 'testimonials'));
     }
 
     /**
      * @return \Illuminate\View\View
      */
-    public function edit()
+    public function edit($companyId)
     {
-        $company = auth()->user()->company;
+        $company = Company::find($companyId);
+       // $company = auth()->user()->company;
 
         return view('company.edit', compact('company'));
     }
@@ -112,6 +140,25 @@ class CompanyController extends Controller
         auth()->user()->company->update($request->all());
 
         return redirect()->back()->withMessage('Company Profile Updated');
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function dashboard()
+    {
+        $company = auth()->user()->company;
+        $surveyResults = $company->surveyResults;
+
+        $referrals = new Collection();
+
+        foreach($surveyResults as $surveyResult)
+        {
+            $referrals = $referrals->merge($surveyResult->referrals);
+        }
+
+
+        return view('company.dashboard', compact('company', 'surveyResults', 'referrals'));
     }
 
     /**
@@ -143,6 +190,7 @@ class CompanyController extends Controller
 
     /**
      * @param $userId
+     * @return \Illuminate\Http\JsonResponse
      */
     public function storeSurveyComplete($userId)
     {
@@ -167,7 +215,6 @@ class CompanyController extends Controller
         $name = \Input::get('name');
         $phone = \Input::get('phone');
         $email = \Input::get('email');
-
 
 
         $referral = Referral::where('email', $email)->get();

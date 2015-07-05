@@ -35,8 +35,8 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/how-it-works">How it Works</a></li>
                 <li><a href="/search">Get Started</a></li>
-                <li><a href="/login">Register a Business</a></li>
-                <li><a href="/Contact">Contact</a></li>
+                <li><a href="/create-company">Register a Business</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </nav><!-- /.navbar collapse-->
     </header><!-- /.navbar -->
