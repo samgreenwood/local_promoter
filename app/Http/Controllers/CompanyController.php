@@ -134,6 +134,25 @@ class CompanyController extends Controller
     }
 
     /**
+     * @return \Illuminate\View\View
+     */
+    public function dashboard()
+    {
+        $company = auth()->user()->company;
+        $surveyResults = $company->surveyResults;
+
+        $referrals = new Collection();
+
+        foreach($surveyResults as $surveyResult)
+        {
+            $referrals = $referrals->merge($surveyResult->referrals);
+        }
+
+
+        return view('company.dashboard', compact('company', 'surveyResults', 'referrals'));
+    }
+
+    /**
      * @param $userId
      */
     public function hideForUser($userId)
@@ -162,6 +181,7 @@ class CompanyController extends Controller
 
     /**
      * @param $userId
+     * @return \Illuminate\Http\JsonResponse
      */
     public function storeSurveyComplete($userId)
     {
@@ -186,7 +206,6 @@ class CompanyController extends Controller
         $name = \Input::get('name');
         $phone = \Input::get('phone');
         $email = \Input::get('email');
-
 
 
         $referral = Referral::where('email', $email)->get();

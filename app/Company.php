@@ -33,14 +33,6 @@ class Company extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function referals()
-    {
-       return $this->belongsToMany(Referral::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function surveyResults()
     {
         return $this->hasMany(SurveyResult::class);
@@ -55,5 +47,21 @@ class Company extends Model
         $surveyResult->company_id = $this->id;
 
         $this->surveyResults()->save($surveyResult);
+    }
+
+    /**
+     * @return int
+     */
+    public function getNetPromoterScore()
+    {
+        if($this->surveyResults()->count())
+        {
+            $promotorPercentage = $this->surveyResults()->where('rating', '>', 8)->count() / $this->surveyResults()->count() * 100;
+            $detractorPercentage = $this->surveyResults()->where('rating', '<', 7)->count() / $this->surveyResults()->count() * 100;
+
+            return (int) $promotorPercentage - $detractorPercentage;
+        }
+
+        return rand(0, 100);
     }
 }

@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/edit-company', ['as' => 'companies.update', 'uses' => 'CompanyController@update']);
     Route::get('/verify-company', ['as' => 'company.verify', 'uses' => 'VerificationController@verify']);
     Route::get('/verify-company-status', ['as' => 'company.verification-status', 'uses' => 'VerificationController@isVerified']);
+    Route::get('/company-dashboard', ['as' => 'company.dashboard', 'uses' => 'CompanyController@dashboard']);
 
     Route::get('/profile', ['as' => 'profile', 'uses' => 'ProfileController@getProfile']);
     Route::post('/profile', ['as' => 'profile.update', 'uses' => 'ProfileController@postProfile']);
