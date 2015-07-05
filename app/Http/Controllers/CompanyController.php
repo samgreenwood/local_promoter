@@ -99,7 +99,12 @@ class CompanyController extends Controller
                 $tourism = app('LocalPromoter\TourismRepository');
                 $tourismCompany = $tourism->get();
 
-                $company = Company::where('tourism_id', $companyId);
+                $company = Company::where('tourism_id', $companyId)->first();
+
+                if (!$company) {
+                    $company = Company::create(['tourism_id' => $companyId]);
+                }
+
                 break;
             case "google":
                 break;
@@ -108,16 +113,20 @@ class CompanyController extends Controller
                 $company = Company::find($companyId);
         }
 
+        $featured = Company::where('featured', 1)->limit(3)->get();
+        $testimonials = SurveyResult::where('rating', '>=', 9)->limit(5)->get();
 
-        return view('company.show', compact('type', 'company', 'tourismCompany', 'googleCompany'));
+
+        return view('company.show', compact('type', 'company', 'tourismCompany', 'googleCompany', 'featured', 'testimonials'));
     }
 
     /**
      * @return \Illuminate\View\View
      */
-    public function edit()
+    public function edit($companyId)
     {
-        $company = auth()->user()->company;
+        $company = Company::find($companyId);
+       // $company = auth()->user()->company;
 
         return view('company.edit', compact('company'));
     }

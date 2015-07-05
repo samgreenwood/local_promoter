@@ -5,7 +5,9 @@
 @stop
 
 @section('content')
-    <div id="page-content">
+
+    @if (!$company->tourism_id)
+
         <!-- Breadcrumb -->
         <div class="container">
             <ol class="breadcrumb">
@@ -56,5 +58,16 @@
             </div><!-- /.col-md-9 -->
             <!-- end My Properties -->
         </div><!-- /.row -->
-</div>
+
+
+    @else
+        <div class="container">
+        <br/><br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>You need to verify ownership before being able to edit this business.</h1>
+                </div>
+            </div>
+        </div>
+    @endif
 @stop

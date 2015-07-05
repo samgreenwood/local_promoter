@@ -12,7 +12,7 @@ class Company extends Model
     /**
      * @var string
      */
-    protected $fillable = ['name', 'address1', 'address2', 'description', 'email', 'phone', 'website', 'suburb', 'state', 'postcode', 'town', 'type'];
+    protected $fillable = ['name', 'address1', 'address2', 'description', 'email', 'phone', 'website', 'suburb', 'state', 'postcode', 'town', 'type', 'tourism_id'];
 
     /**
      * @return mixed
