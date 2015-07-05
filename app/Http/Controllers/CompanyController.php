@@ -80,7 +80,7 @@ class CompanyController extends Controller
         auth()->user()->company_id = $company->id;
         auth()->user()->save();
 
-        return redirect(route('companies.edit'))->withMessage('Company Created!');
+        return redirect(route('companies.edit', [$company->id]))->withMessage('Company Created!');
 
     }
 
