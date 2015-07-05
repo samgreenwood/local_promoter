@@ -11,6 +11,8 @@ class Referral extends Model
 
     public $guarded = [];
 
+    public $timestamps = false;
+
     /**
      * @return mixed
      */
