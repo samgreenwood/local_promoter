@@ -11,12 +11,16 @@
                     <div class="col-md-9 col-sm-9">
                         <section id="agent-detail">
 
-                            <header><h1>{{$company}}</h1></header>
+                            <header>
+                                <h1>
+                                    {{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company)}}
+                                </h1>
+                            </header>
                             <section id="agent-info">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-3">
                                         <figure class="agent-image">
-                                         <img alt="" src="https://maps.googleapis.com/maps/api/staticmap?center={{$company->getAddress()}}&zoom=13&size=189x189&maptype=roadmap&markers=color:red%7Clabel:%7C{{$company->lat}},{{$company->longitude}}&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E">
+                                         <img alt="" src="{{($type == 'tourism') ? $tourismCompany->productImage : (($type == 'google') ? $googleCompany->image : 'https://maps.googleapis.com/maps/api/staticmap?center='.$company->getAddress().'&zoom=13&size=189x189&maptype=roadmap&markers=color:red%7Clabel:%7C'.$company->lat.','.$company->longitude.'&key=AIzaSyDAZv5-MhsbNQT8-5G6Z94vsMu24ubhY6E')}}">
                                          </a>
                                          </figure>
                                     </div><!-- /.col-md-3 -->
@@ -24,22 +28,31 @@
                                         <h3>Contact Info</h3>
                                         <dl>
                                             <dt>Phone:</dt>
-                                            <dd>{{$company->phone}}&nbsp;</dd>
+                                            <dd>{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->phone)}}&nbsp;</dd>
                                             <dt>Mobile: &nbsp;</dt>
-                                            <dd>{{$company->mobile}}&nbsp;</dd>
+                                            <dd>{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->mobile)}}&nbsp;</dd>
                                             <dt>Email:</dt>
-                                            <dd><a href="mailto:{{$company->email}}">{{$company->email}}</a></dd>
+                                            <dd><a href="mailto:{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->email : $company->email)}}">{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->email)}}</a></dd>
                                         </dl>
                                     </div><!-- /.col-md-5 -->
                                     <div class="col-md-4 col-sm-4">
                                         <h3>Description</h3>
-                                        <p>{{$company->description}}</p>
+                                        <p>{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->description)}}</p>
                                     </div><!-- /.col-md-4 -->
                                 </div><!-- /.row -->
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-5 col-sm-offset-3 col-sm-5">
                                         <h3>Address</h3>
-                                        <a href="agency-detail.html" class="agency-logo"><img alt="" src="assets/img/agency-logo-01.png"></a>
+                                        <dl>
+                                            <dt>Address Line 1</dt>
+                                            <dd>{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->address1)}}</dd>
+                                            <dt>Addrsss Line 2</dt>
+                                            <dd>{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->address2)}}</dd>
+                                            <dt>Suburb</dt>
+                                            <dd>{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->town)}}</dd>
+                                            <dt>Postcode</dt>
+                                            <dd>{{($type == 'tourism') ? $tourismCompany->productName : (($type == 'google') ? $googleCompany->name : $company->postcode)}}</dd>
+                                        </dl>
                                     </div><!-- /.col-md-5 -->
                                     <div class="col-md-4 col-sm-4">
                                         <h3>Is this your business?</h3>

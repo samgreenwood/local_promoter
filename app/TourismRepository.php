@@ -28,6 +28,14 @@ class TourismRepository
         return json_decode(str_replace('"!2', '!2', preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $res->getBody()->getContents())))->products;
     }
 
+    public function get()
+    {
+
+        $res = $this->client->get($this->url($this->options));
+
+        return json_decode(str_replace('"!2', '!2', preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $res->getBody()->getContents())))->products[0];
+    }
+
     public function radius($latitude, $longitude, $distance = 10)
     {
         $options = [

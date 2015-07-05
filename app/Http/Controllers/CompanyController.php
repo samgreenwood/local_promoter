@@ -20,6 +20,7 @@ class CompanyController extends Controller
     public function index()
     {
         $postcode = "";
+        $businessName = "";
         $user = \Auth::user();
 
         $hidden = $user->hiddenCompanies()->where('created_at', '>', Carbon::now()->subHours(24));
@@ -47,7 +48,7 @@ class CompanyController extends Controller
 
         $featured = Company::where('featured', 1)->limit(3)->get();
 
-        return view('company.index', compact('companies', 'postcode', 'featured'));
+        return view('company.index', compact('companies', 'postcode', 'featured', 'businessName'));
     }
 
     /**
@@ -88,9 +89,27 @@ class CompanyController extends Controller
      */
     public function show($companyId)
     {
-        $company = Company::find($companyId);
+        $company = "";
+        $tourismCompany = "";
+        $googleCompany = "";
+        $type = \Input::get('type');
 
-        return view('company.show', compact('company'));
+        switch ($type) {
+            case "tourism":
+                $tourism = app('LocalPromoter\TourismRepository');
+                $tourismCompany = $tourism->get();
+
+                $company = Company::where('tourism_id', $companyId);
+                break;
+            case "google":
+                break;
+
+            default:
+                $company = Company::find($companyId);
+        }
+
+
+        return view('company.show', compact('type', 'company', 'tourismCompany', 'googleCompany'));
     }
 
     /**
