@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use LocalPromoter\Company;
+use Services_Twilio_Twiml;
 
 class VerificationController extends Controller
 {
@@ -26,18 +27,29 @@ class VerificationController extends Controller
     }
 
     /**
-     * @param Company $company
      * @return \Illuminate\Http\JsonResponse
      */
-    public function verify(Company $company)
+    public function verify()
     {
-        $call = $this->twilio->account->calls->create(
-            '+61404891194',
+        $company = auth()->user()->company;
+
+        if($company->verified)
+        {
+            return redirect(route('companies.edit'))->withMessage('Company Already Verified');
+        }
+
+        $company->verification_code = mt_rand(100000, 999999);
+        $company->verified = false;
+        $company->save();
+
+        $this->twilio->account->calls->create(
+            env('TWILIO_VOICE'),
             $company->phone,
-            url('/verify-user/call')
+            route('company.verify.call')
         );
 
-        return response()->json($call);
+        return view('company.verify', compact('company'));
+
     }
 
     /**
@@ -48,16 +60,17 @@ class VerificationController extends Controller
     {
         $response = new Services_Twilio_Twiml();
 
+
         if ( ! $request->has('Digits')) {
             $gather = $response->gather(array('numDigits' => 6));
-            $gather->say("Please enter your verification code.");
+            $gather->say("Hello, Please enter your verification code for localpromoter dot com dot ay you.");
         } else {
             $calledNumber = $request->get('Called');
 
             $company = $this->company->where('phone', $calledNumber)->first();
 
             if ($company) {
-                if ($request->get('digits') === $company->verification_code) {
+                if ($request->get('Digits') === $company->verification_code) {
                     $company->verified = true;
                     $company->save();
 
