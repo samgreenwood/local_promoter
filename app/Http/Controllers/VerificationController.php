@@ -60,9 +60,10 @@ class VerificationController extends Controller
     {
         $response = new Services_Twilio_Twiml();
 
+
         if ( ! $request->has('Digits')) {
             $gather = $response->gather(array('numDigits' => 6));
-            $gather->say("Please enter your verification code for localpromoter.com.au.");
+            $gather->say("Hello, Please enter your verification code for localpromoter.com. ay you");
         } else {
             $calledNumber = $request->get('Called');
 
