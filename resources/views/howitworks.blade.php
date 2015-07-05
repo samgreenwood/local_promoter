@@ -33,6 +33,9 @@
                         <p>
                            The way Local Promoter works is that members of the public can list all of the businesses around them and provide valuable feedback to the businesses they’ve used. People who answer with a score of 9 or 10 are considered the promoters, therefore our platform asks them if they can recommend anyone to use the selected business. They can send recommendations to friends either by selecting a Facebook Friend or typing in the Name, Email or Phone number of their friend.
                         </p>
+                        <p>
+                            Businesses can choose to reward referrers for successful referrals with online amazon gift vouchers.
+                        </p>
                     </section><!-- /#profile -->
                 </div><!-- /.col-md-9 -->
                 <!-- end My Properties -->
