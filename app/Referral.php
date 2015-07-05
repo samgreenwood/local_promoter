@@ -9,6 +9,8 @@ class Referral extends Model
      */
     protected $table = "referrals";
 
+    public $guarded = [];
+
     /**
      * @return mixed
      */

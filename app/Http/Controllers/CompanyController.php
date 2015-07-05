@@ -58,7 +58,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->company_id) return redirect()->route('companies.edit');
+        if(auth()->user()->company_id) return redirect()->route('companies.edit', [auth()->user()->company_id]);
 
         $company = new Company();
 
@@ -126,7 +126,11 @@ class CompanyController extends Controller
     public function edit($companyId)
     {
         $company = Company::find($companyId);
-       // $company = auth()->user()->company;
+
+        if (auth()->user()->company && auth()->user()->company->id != $companyId && $company->tourism_id == '') {
+            return redirect('/');
+        }
+
 
         return view('company.edit', compact('company'));
     }
@@ -219,12 +223,13 @@ class CompanyController extends Controller
 
         $referral = Referral::where('email', $email)->get();
 
-        Referral::create(['']);
+        if ($referral) {
+            //Link survey to this referral user
+        } else {
+            Referral::create(['name' => $name, 'phone' => $phone, 'email' => $email]);
+        }
 
-        dd($referral);
-
-
-        dd($name);
+        return response()->json([]);
     }
 
 }

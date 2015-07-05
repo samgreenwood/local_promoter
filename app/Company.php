@@ -62,6 +62,6 @@ class Company extends Model
             return (int) $promotorPercentage - $detractorPercentage;
         }
 
-        return rand(0, 100);
+        return 0;
     }
 }

@@ -8,6 +8,26 @@
 <script type="text/javascript" src="/assets/js/company.js"></script>
 @stop
 
+@section('facebook')
+<script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1441174172857987',
+          xfbml      : true,
+          version    : 'v2.3'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+@stop
+
 @section('content')
     <div class="container">
                 <div class="row">
@@ -82,7 +102,7 @@
                             <hr class="thick">
                             <section id="agent-properties">
                                 <header><h3>Survey</h3></header>
-                                  <div class="property" data-companyid="{{$company->productId}}">
+                                  <div class="property" data-companyid="{{$company->id}}">
                                 <aside class="actions-holder">
 
                                     <div class="row">
